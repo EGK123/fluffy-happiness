@@ -10,17 +10,18 @@ and missed deadlines.
 
 ## How we will assign (and reassign) tasks
 
+When assigning tasks if necessary we will group up in person and we will dole out the jobs
 
+## How will we will track progress (and follow-up) on completion of tasks
 
-## How we will track progress (and follow-up) on completion of tasks
+Dealines
 
-
-
-## How we will communicate difficulties with a task assigned to us
+## How will will communicate difficulties with a task assigned to us
 
 
 
 ## How we will back up each other to ensure that deadlines are not missed
+
 
 
 
