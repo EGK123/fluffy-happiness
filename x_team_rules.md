@@ -14,7 +14,7 @@ When assigning tasks if necessary we will group up in person and we will dole ou
 
 ## How will we will track progress (and follow-up) on completion of tasks
 
-Dealines. We will create a shared text document on GitHub to share our progress towards our tasks.
+Deadlines. We will create a shared text document on GitHub to share our progress towards our tasks.
 
 ## How will will communicate difficulties with a task assigned to us
 
