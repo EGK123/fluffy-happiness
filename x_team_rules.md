@@ -11,6 +11,7 @@ and missed deadlines.
 ## How we will assign (and reassign) tasks
 
 When assigning tasks if necessary we will group up in person and we will dole out the jobs.
+We will attempt to emulate the agile development process.
 
 ## How we will track progress (and follow-up) on completion of tasks
 
