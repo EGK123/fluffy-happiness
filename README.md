@@ -1,14 +1,15 @@
-# super-octo-system
+# fluffy-happiness
 
 1. Replace the repository name in the title above with the name of your team's GitHub repository for this exercise.
 2. Answer these questions
    * What are the GitHub usernames of your team members?
-       * GitHub username 1:
+       * GitHub username 1: Ege-Jon-Gurt
        * GitHub username 2:
        * GitHub username 3:
        * GitHub username 4:
        * GitHub username 5:
    * When did you complete this exercise? 
+   Wednesday 2/28/2018
    * How long did it take your team to complete this exercise? 
 
 ## Table of Contents
