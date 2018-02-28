@@ -10,7 +10,7 @@ and missed deadlines.
 
 ## How we will assign (and reassign) tasks
 
-When assigning tasks if necessary we will group up in person and we will dole out the jobs
+When assigning tasks if necessary we will group up in person and we will dole out the jobs.
 
 ## How will we will track progress (and follow-up) on completion of tasks
 
@@ -18,7 +18,7 @@ Dealines
 
 ## How will will communicate difficulties with a task assigned to us
 
-
+Everyone should look over their job within the first couple days of recieving it to find any large difficulties
 
 ## How we will back up each other to ensure that deadlines are not missed
 
