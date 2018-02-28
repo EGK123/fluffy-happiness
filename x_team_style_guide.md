@@ -1,4 +1,4 @@
-# X-Team NN Style Guide
+# X-Team 09 Style Guide
 
 <brief description of your team's opinion or philosophy regarding Style Guides>
 
