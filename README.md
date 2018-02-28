@@ -7,7 +7,7 @@
        * GitHub username 2:
        * GitHub username 3:
        * GitHub username 4:
-       * GitHub username 5:
+       * GitHub username 5: kjong
    * When did you complete this exercise? 
    Wednesday 2/28/2018
    * How long did it take your team to complete this exercise? 
