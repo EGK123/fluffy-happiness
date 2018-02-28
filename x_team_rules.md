@@ -23,6 +23,7 @@ Everyone should look over their job within the first couple days of recieving it
 ## How we will back up each other to ensure that deadlines are not missed
 
 Deadlines will have a few days buffer between actual due date for class so that we can address any issues.
+Encourage others to ask for help--when confused or not--to help streamline productivity and avoid miscommunication. Work as a team to solve problems that are taking longer.
 
 
 
