@@ -1,4 +1,4 @@
-# X-Team NN Rules
+# X-Team 09 Rules
 
 These rules establish how our team will assign tasks,
 track progress on each task, and communicate with each other 
