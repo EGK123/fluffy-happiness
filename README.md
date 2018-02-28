@@ -6,7 +6,7 @@
        * GitHub username 1: Ege-Jon-Gurt
        * GitHub username 2: toru5
        * GitHub username 3: placina20
-       * GitHub username 4:
+       * GitHub username 4: NathanKolbow
        * GitHub username 5: kjong
    * When did you complete this exercise? 
    Wednesday 2/28/2018
