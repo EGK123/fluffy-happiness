@@ -10,7 +10,7 @@ and missed deadlines.
 
 ## How we will assign (and reassign) tasks
 
-When assigning tasks if necessary we will group up in person and we will dole out the jobs.
+When assigning tasks if necessary we will group up in person and we will dole out the jobs. Reassignment of tasks should be done early on in the development process.
 
 ## How will we will track progress (and follow-up) on completion of tasks
 
