@@ -1,3 +1,21 @@
+/////////////////////////////////////////////////////////////////////////////
+// Semester:         CS400 Spring 2018
+// PROJECT:          X-Team Exercise #4, Dictionary Graph
+// FILES:            Graph.java
+//					 GraphTest.java
+//					 GraphProcessor.java
+//					 GraphProcessorTest.java
+//					 WordProcessor.java
+//
+// Authors:			 
+// Due date:		 10:00 PM on Monday, April 16th
+// Outside sources:	 None
+//
+// Instructor:       Deb Deppeler (deppeler@cs.wisc.edu)
+// Bugs:             No known bugs
+//
+//////////////////////////// 80 columns wide //////////////////////////////////
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
