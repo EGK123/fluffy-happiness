@@ -16,10 +16,6 @@ public class Graph<E> implements GraphADT<E> {
      * Instance variables and constructors
      */
 	
-	int x = 1;
-	// hello
-	x = 4;
-	
     /**
      * {@inheritDoc}
      */
