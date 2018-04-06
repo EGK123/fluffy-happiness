@@ -17,6 +17,8 @@ public class Graph<E> implements GraphADT<E> {
      */
 	
 	int x = 1;
+	// hello
+	x = 4;
 	
     /**
      * {@inheritDoc}
