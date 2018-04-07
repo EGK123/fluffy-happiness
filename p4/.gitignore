@@ -3,3 +3,6 @@
 /GraphProcessor.class
 /GraphTest.class
 /WordProcessor.class
+/DijkstraPath.class
+/GraphProcessor$DijkstraPath$Pair.class
+/GraphProcessor$DijkstraPath.class
