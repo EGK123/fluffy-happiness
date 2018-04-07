@@ -182,7 +182,7 @@ public class GraphProcessor {
                                             vertexList.get(succIndex)));
 
                             pq.removeAll(arbList);
-                            
+
                             // ^^^^ // potentially not needed, seems to work without it
 
                             weight.set(succIndex, possibleDistance);
@@ -253,27 +253,27 @@ public class GraphProcessor {
      * @return Integer the number of vertices (words) added
      */
     public Integer populateGraph(String filepath) {
-    	try {
-			Stream<String> wordStream = WordProcessor.getWordStream(filepath);
-			List<String> listOfWords = wordStream.collect(Collectors.toList());
-			// adds words to graph
-			for (String word : listOfWords) {
-				graph.addVertex(word);
-			}
-			// checks if words should be adjacent to one another
-			for (int i = 0; i < listOfWords.size() - 1; i++ ) {
-				for (int j = i + 1; j < listOfWords.size(); j++) {
-					if (WordProcessor.isAdjacent(listOfWords.get(i), listOfWords.get(j))) {
-						graph.addEdge(listOfWords.get(i), listOfWords.get(j));
-					}
-				}
-			}
-			return listOfWords.size();
-		} catch (IOException e) {
-			System.out.println("Incorrect filepath.");
-//			e.printStackTrace();
-			return 0;
-		}
+        try {
+            Stream<String> wordStream = WordProcessor.getWordStream(filepath);
+            List<String> listOfWords = wordStream.collect(Collectors.toList());
+            // adds words to graph
+            for (String word : listOfWords) {
+                graph.addVertex(word);
+            }
+            // checks if words should be adjacent to one another
+            for (int i = 0; i < listOfWords.size() - 1; i++) {
+                for (int j = i + 1; j < listOfWords.size(); j++) {
+                    if (WordProcessor.isAdjacent(listOfWords.get(i), listOfWords.get(j))) {
+                        graph.addEdge(listOfWords.get(i), listOfWords.get(j));
+                    }
+                }
+            }
+            return listOfWords.size();
+        } catch (IOException e) {
+            System.out.println("Incorrect filepath.");
+            // e.printStackTrace();
+            return 0;
+        }
     }
 
 
@@ -288,25 +288,26 @@ public class GraphProcessor {
      * @return List<String> list of the words
      */
     public List<String> getShortestPath(String word1, String word2) {
-        int i = 0;
-        int j = 0;
-        List<String> l = new ArrayList<String>();
+        int i = 0; // index of first word
+        int j = 0; // index of second word
         
+        List<String> l = new ArrayList<String>();
+
         while (!paths.get(i).get(0).contains(word1 + "->")) {
             i++; // find first word
         }
-        
+
         while (!paths.get(i).get(j).contains("->" + word2)) {
             j++; // find second word
         }
-        
+
         String generalTokens[] = paths.get(i).get(j).split(": ");
         String pathTokens[] = generalTokens[1].split(",");
-        
+
         for (String s : pathTokens) {
             l.add(s);
         }
-        
+
         return l;
 
     }
@@ -347,31 +348,39 @@ public class GraphProcessor {
         g.addVertex("bat");
         g.addVertex("shart");
         g.addVertex("shat");
+        g.addVertex("at");
+        g.addVertex("spat");
+        g.addVertex("shark");
         g.addEdge("cat", "hat");
         g.addEdge("cat", "bat");
         g.addEdge("hat", "bat");
         g.addEdge("hat", "shat");
         g.addEdge("shat", "shart");
-
+        g.addEdge("cat", "at");
+        g.addEdge("at", "hat");
+        g.addEdge("at", "bat");
+        g.addEdge("spat", "shat");
+        g.addEdge("shart", "shark");
+        
         GraphProcessor p = new GraphProcessor();
         p.graph = g;
 
         p.shortestPathPrecomputation();
-        
+
         for (ArrayList<String> a : p.paths) {
             for (String s : a) {
                 System.out.println(s);
             }
         }
-        
-        
+
+
         System.out.println(p.getShortestDistance("shart", "bat"));
-        
-//        DijkstraPath d = p.new DijkstraPath("cat");
-//        ArrayList<String> test = d.computePaths();
-//
-//        for (String s : test) {
-//            System.out.println(s);
-//        }
+
+        // DijkstraPath d = p.new DijkstraPath("cat");
+        // ArrayList<String> test = d.computePaths();
+        //
+        // for (String s : test) {
+        // System.out.println(s);
+        // }
     }
 }
