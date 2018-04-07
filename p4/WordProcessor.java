@@ -108,34 +108,44 @@ public class WordProcessor {
 		if (word2.length() > word1.length()) {
 			String tmp = word1;
 			word1 = word2;
-			word2 = word1;
+			word2 = tmp;
 		}
-		
 		if (word1.length() == word2.length()) {
-			// words are the same length, so there must only be 1 letter different if the words
-			// are adjacent
-			int count = 0;
-			for (int i = 0; i < word1.length(); i++) {
-				if (word1.charAt(i) != word2.charAt(i)) {
-					count++;
-				}
-			}
-			if (count == 1) {
+			if (getNumberOfDifferentLetters(word1, word2) == 1) {
+				// word1 and word2 have one letter substituted
 				return true;
 			}
 		} else if (word2.length() + 1 == word1.length()) {
-			// words are of different length. Deletes one letter, and then recursively checks if
-			// the Strings should be adjacent.
 			for (int i = 0; i < word2.length(); i++) {
 				if (word1.charAt(i) != word2.charAt(i)) {
 					word1 = word1.substring(0, i) + word1.substring(i + 1, word1.length());
-					return isAdjacent(word1, word2);
+					if (getNumberOfDifferentLetters(word1, word2) == 0) {
+						// word1 had one letter added to it
+						return true;
+					} else {
+						return false;
+					}
 				}
 			}
-			// all the letters the same until the last letter of the longer word
-			return isAdjacent(word1.substring(0, word1.length() - 1), word2);
+			// word1 is the same as word2 with one letter added on to the end
+			return true;
 		}
 		return false;	
 	}
 	
+	/**
+	 * Returns the number of letters that are different between the two strings.
+	 * @param word1 the first word
+	 * @param word2 the second word
+	 * @return the number of letters different between the words
+	 */
+	private static int getNumberOfDifferentLetters(String word1, String word2) {
+		int count = 0;
+		for (int i = 0; i < word1.length(); i++) {
+			if (word1.charAt(i) != word2.charAt(i)) {
+				count++;
+			}
+		}
+		return count;
+	}
 }
