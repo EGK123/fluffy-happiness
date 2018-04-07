@@ -104,6 +104,37 @@ public class WordProcessor {
 	 * @return true if word1 and word2 are adjacent else false
 	 */
 	public static boolean isAdjacent(String word1, String word2) {
+		// makes word1 the longer word, if it isn't already
+		if (word2.length() > word1.length()) {
+			String tmp = word1;
+			word1 = word2;
+			word2 = word1;
+		}
+		
+		if (word1.length() == word2.length()) {
+			// words are the same length, so there must only be 1 letter different if the words
+			// are adjacent
+			int count = 0;
+			for (int i = 0; i < word1.length(); i++) {
+				if (word1.charAt(i) != word2.charAt(i)) {
+					count++;
+				}
+			}
+			if (count == 1) {
+				return true;
+			}
+		} else if (word2.length() + 1 == word1.length()) {
+			// words are of different length. Deletes one letter, and then recursively checks if
+			// the Strings should be adjacent.
+			for (int i = 0; i < word2.length(); i++) {
+				if (word1.charAt(i) != word2.charAt(i)) {
+					word1 = word1.substring(0, i) + word1.substring(i + 1, word1.length());
+					return isAdjacent(word1, word2);
+				}
+			}
+			// all the letters the same until the last letter of the longer word
+			return isAdjacent(word1.substring(0, word1.length() - 1), word2);
+		}
 		return false;	
 	}
 	

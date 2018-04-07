@@ -24,6 +24,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -252,8 +253,27 @@ public class GraphProcessor {
      * @return Integer the number of vertices (words) added
      */
     public Integer populateGraph(String filepath) {
-        return 0;
-
+    	try {
+			Stream<String> wordStream = WordProcessor.getWordStream(filepath);
+			List<String> listOfWords = wordStream.collect(Collectors.toList());
+			// adds words to graph
+			for (String word : listOfWords) {
+				graph.addVertex(word);
+			}
+			// checks if words should be adjacent to one another
+			for (int i = 0; i < listOfWords.size() - 1; i++ ) {
+				for (int j = i + 1; j < listOfWords.size(); j++) {
+					if (WordProcessor.isAdjacent(listOfWords.get(i), listOfWords.get(j))) {
+						graph.addEdge(listOfWords.get(i), listOfWords.get(j));
+					}
+				}
+			}
+			return listOfWords.size();
+		} catch (IOException e) {
+			System.out.println("Incorrect filepath.");
+//			e.printStackTrace();
+			return 0;
+		}
     }
 
 
