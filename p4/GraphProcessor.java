@@ -7,7 +7,7 @@
 // GraphProcessorTest.java
 // WordProcessor.java
 //
-// Authors:
+// Authors: Zach Kremer, <YOUR NAMES HERE>
 // Due date: 10:00 PM on Monday, April 16th
 // Outside sources: None
 //
@@ -65,8 +65,8 @@ public class GraphProcessor {
          * 
          * @author Zach
          *
-         * @param <KEY> unique ID to identify an item with
-         * @param <VALUE> assigned value for the key
+         * @param <WEIGHT> comparable object to identify an item with
+         * @param <VERTEX> data or name associated with vertex
          */
         protected class Pair<WEIGHT, VERTEX> extends Object
                         implements Comparable<Pair<WEIGHT, VERTEX>> {
