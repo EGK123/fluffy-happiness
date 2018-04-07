@@ -323,7 +323,7 @@ public class GraphProcessor {
      * @return Integer distance
      */
     public Integer getShortestDistance(String word1, String word2) {
-        return getShortestPath(word1, word2).size();
+        return getShortestPath(word1, word2).size() - 1;
     }
 
     /**
@@ -343,28 +343,30 @@ public class GraphProcessor {
 
     public static void main(String[] args) {
         GraphADT<String> g = new Graph<String>();
-        g.addVertex("cat");
-        g.addVertex("hat");
-        g.addVertex("bat");
-        g.addVertex("shart");
-        g.addVertex("shat");
-        g.addVertex("at");
-        g.addVertex("spat");
-        g.addVertex("shark");
-        g.addEdge("cat", "hat");
-        g.addEdge("cat", "bat");
-        g.addEdge("hat", "bat");
-        g.addEdge("hat", "shat");
-        g.addEdge("shat", "shart");
-        g.addEdge("cat", "at");
-        g.addEdge("at", "hat");
-        g.addEdge("at", "bat");
-        g.addEdge("spat", "shat");
-        g.addEdge("shart", "shark");
+//        g.addVertex("cat");
+//        g.addVertex("hat");
+//        g.addVertex("bat");
+//        g.addVertex("shart");
+//        g.addVertex("shat");
+//        g.addVertex("at");
+//        g.addVertex("spat");
+//        g.addVertex("shark");
+//        g.addEdge("cat", "hat");
+//        g.addEdge("cat", "bat");
+//        g.addEdge("hat", "bat");
+//        g.addEdge("hat", "shat");
+//        g.addEdge("shat", "shart");
+//        g.addEdge("cat", "at");
+//        g.addEdge("at", "hat");
+//        g.addEdge("at", "bat");
+//        g.addEdge("spat", "shat");
+//        g.addEdge("shart", "shark");
         
         GraphProcessor p = new GraphProcessor();
         p.graph = g;
-
+        
+        p.populateGraph("word_list.txt");
+        
         p.shortestPathPrecomputation();
 
         for (ArrayList<String> a : p.paths) {
@@ -373,9 +375,11 @@ public class GraphProcessor {
             }
         }
 
+//      System.out.println(p.getShortestDistance("shart", "bat"));
 
-        System.out.println(p.getShortestDistance("shart", "bat"));
-
+        System.out.println(p.getShortestPath("charge", "gimlets"));
+        System.out.println(p.getShortestDistance("charge", "gimlets"));
+        
         // DijkstraPath d = p.new DijkstraPath("cat");
         // ArrayList<String> test = d.computePaths();
         //
