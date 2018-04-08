@@ -377,8 +377,8 @@ public class GraphProcessor {
 
 //      System.out.println(p.getShortestDistance("shart", "bat"));
 
-        System.out.println(p.getShortestPath("charge", "gimlets"));
-        System.out.println(p.getShortestDistance("charge", "gimlets"));
+        System.out.println(p.getShortestPath("CHARGE", "GIMLETS"));
+        System.out.println(p.getShortestDistance("CHARGE", "GIMLETS"));
         
         // DijkstraPath d = p.new DijkstraPath("cat");
         // ArrayList<String> test = d.computePaths();

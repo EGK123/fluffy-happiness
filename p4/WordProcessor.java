@@ -1,4 +1,3 @@
-
 /////////////////////////////////////////////////////////////////////////////
 // Semester:         CS400 Spring 2018
 // PROJECT:          X-Team Exercise #4, Dictionary Graph
@@ -20,6 +19,7 @@
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -93,7 +93,12 @@ public class WordProcessor {
 		 *      chained together as: streamOfLines.map(...).filter(a -> ...).map(...)
 		 *      and so on
 		 */
-		return Files.lines(Paths.get(filepath));
+	    
+	    Stream<String> stream = Files.lines(Paths.get(filepath));
+	    
+	    stream = stream.map(String::trim).map(String::toUpperCase).filter(word -> word != "");
+	    
+	    return stream;
 	}
 
 	/**
