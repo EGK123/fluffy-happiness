@@ -95,7 +95,8 @@ public class WordProcessor {
 	    
 	    Stream<String> stream = Files.lines(Paths.get(filepath));
 	    
-	    stream = stream.map(String::trim).map(String::toUpperCase).filter(word -> word != "");
+	    //stream = stream.map(String::trim).map(String::toUpperCase).filter(word -> word != "");
+	    stream = stream.map(String::trim).map(String::toUpperCase).filter(word -> word.length() > 0);
 	    
 	    return stream;
 	}
