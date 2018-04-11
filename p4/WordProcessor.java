@@ -7,7 +7,7 @@
 // GraphProcessorTest.java
 // WordProcessor.java
 //
-// Authors:
+// Authors: Patrick Lacina, placina@wisc.edu & Jong Kim, kim532@wisc.edu
 // Due date: 10:00 PM on Monday, April 16th
 // Outside sources: None
 //
@@ -112,17 +112,20 @@ public class WordProcessor {
       word1 = word2;
       word2 = tmp;
     }
+    
     if (word1.length() == word2.length()) {
+      // can only be adjacent if there was a single substitution
       if (getNumberOfDifferentLetters(word1, word2) == 1) {
-        // word1 and word2 have one letter substituted
         return true;
       }
     } else if (word2.length() + 1 == word1.length()) {
+      // can only be adjacent if a letter was added to word1
       for (int i = 0; i < word2.length(); i++) {
         if (word1.charAt(i) != word2.charAt(i)) {
           word1 = word1.substring(0, i) + word1.substring(i + 1, word1.length());
           if (getNumberOfDifferentLetters(word1, word2) == 0) {
-            // word1 had one letter added to it
+            // the words have to be exactly that same after removing the added letter for the
+        	// words to be adjacent
             return true;
           } else {
             return false;
@@ -132,12 +135,15 @@ public class WordProcessor {
       // word1 is the same as word2 with one letter added on to the end
       return true;
     }
+    // all other cases return false
     return false;
   }
 
   /**
    * Returns the number of letters that are different between the two strings.
+   * Precondition: word1 and word2 must have the same number of letters
    * 
+   * @author Patrick
    * @param word1 the first word
    * @param word2 the second word
    * @return the number of letters different between the words
