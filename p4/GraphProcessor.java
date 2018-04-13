@@ -58,7 +58,7 @@ import java.util.stream.Stream;
  */
 public class GraphProcessor {
 
-  private ArrayList<ArrayList<String>> paths;
+  ArrayList<ArrayList<String>> paths;
 
   class DijkstraPath {
     /**
