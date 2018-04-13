@@ -161,11 +161,14 @@ public class GraphProcessorTest {
 		ArrayList<String> paths = new ArrayList<String>();
 		paths.add("(CAT->CAT): CAT");
 		paths.add("(CAT->RAT): CAT,RAT");
+		paths.add("(CAT->RIT): CAT,RAT,RIT");
 		paths.add("(RAT->CAT): RAT,CAT");
 		paths.add("(RAT->RAT): RAT");
 		paths.add("(RAT->RIT): RAT,RIT");
 		paths.add("(RIT->RIT): RIT");
-		paths.add("(CAT->RIT): CAT,RAT,RIT");
+		paths.add("(RIT->RAT): RIT,RAT");
+		paths.add("(RIT->CAT): RIT,RAT,CAT");
+		
 		
 		gp.populateGraph(wordList);
 		gp.shortestPathPrecomputation();
@@ -173,9 +176,11 @@ public class GraphProcessorTest {
 		int i=0;
 		for (ArrayList<String> a : gp.paths) {
 		      for (String s : a) {
-		    	  expected=s;
-		        System.out.println(s);
-		        if(!(s.contains(paths.get(i)))) {
+		    	 actual=s;
+		    	 expected=paths.get(i);
+		      //  System.out.println(s);
+		        System.out.println(paths.get(i));
+		       if(!(a.contains(paths.get(i)))) {
 		        	actual = "path not found";
 					fail("expected: "+expected+ " actual: "+actual);
 		        }
