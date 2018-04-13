@@ -7,7 +7,7 @@
 // GraphProcessorTest.java
 // WordProcessor.java
 //
-// Authors: Zach Kremer, <YOUR NAMES HERE>
+// Authors: Zach Kremer, Ege Kula<YOUR NAMES HERE>
 // Due date: 10:00 PM on Monday, April 16th
 // Outside sources: None
 //
