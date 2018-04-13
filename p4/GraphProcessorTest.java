@@ -163,6 +163,9 @@ public class GraphProcessorTest {
 		paths.add("(CAT->RAT): CAT,RAT");
 		paths.add("(RAT->CAT): RAT,CAT");
 		paths.add("(RAT->RAT): RAT");
+		paths.add("(RAT->RIT): RAT,RIT");
+		paths.add("(RIT->RIT): RIT");
+		paths.add("(CAT->RIT): CAT,RAT,RIT");
 		
 		gp.populateGraph(wordList);
 		gp.shortestPathPrecomputation();
@@ -180,7 +183,6 @@ public class GraphProcessorTest {
 		      }
 		    }
 	
-			
 		}
 	
 }
