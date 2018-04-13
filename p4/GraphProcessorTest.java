@@ -32,13 +32,13 @@ import org.junit.Test;
  * @author
  */
 public class GraphProcessorTest {
-	  private GraphADT<String> graph;
+	
 	  
 	  private GraphProcessor gp;
 
-	  private static List<String> vertices;
+	 
 
-	  private static int numOfVertices = 0;
+
 
 	  String expected = null;
 	  
