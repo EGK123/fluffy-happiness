@@ -81,7 +81,7 @@ public class GraphProcessorTest {
 	@Test
 	public final void test1PopulateGraphWithlistTest() {
 		String wordList = "listTest";
-		expectedInt = 6 ;
+		expectedInt = 7 ;
 		actualInt = gp.populateGraph(wordList);
 		System.out.println(actualInt);
 		if(actualInt != expectedInt) {
@@ -95,11 +95,12 @@ public class GraphProcessorTest {
 		 gp.populateGraph(wordList);
 		 gp.shortestPathPrecomputation();
 		ArrayList<String> expectedPath = new ArrayList<String>();
-		expectedPath.add("cat");
-		expectedPath.add("rat");
-		expectedPath.add("heat");
-		expectedPath.add("wheat");
-		int count = 4;
+		expectedPath.add("CAT");
+		expectedPath.add("HAT");
+		expectedPath.add("RAT");
+		expectedPath.add("HEAT");
+		expectedPath.add("WHEAT");
+		int count = 5;
 		List<String> actualPath = gp.getShortestPath("CAT", "WHEAT");
 		for(int i =0; i< count; i++) {
 			expected = expectedPath.get(i);
