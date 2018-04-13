@@ -100,7 +100,7 @@ public class GraphProcessorTest {
 		expectedPath.add("heat");
 		expectedPath.add("wheat");
 		int count = 4;
-		List<String> actualPath = gp.getShortestPath("cat", "wheat");
+		List<String> actualPath = gp.getShortestPath("CAT", "WHEAT");
 		for(int i =0; i< count; i++) {
 			expected = expectedPath.get(i);
 			actual = actualPath.get(i);
@@ -120,7 +120,7 @@ public class GraphProcessorTest {
 		 ArrayList<String> expectedPath = new ArrayList<String>();
 			
 			int count = 1;
-			List<String> actualPath = gp.getShortestPath("rat", "rat");
+			List<String> actualPath = gp.getShortestPath("RAT", "RAT");
 		
 				if(!(actualPath.isEmpty())){
 					fail("expected: "+expected+ " actual: "+actual);
@@ -134,7 +134,7 @@ public class GraphProcessorTest {
 		 gp.shortestPathPrecomputation();
 		expectedInt = 3;
 		
-		int actualInt = gp.getShortestDistance("cat", "wheat");
+		int actualInt = gp.getShortestDistance("CAT", "WHEAT");
 	
 			if(!(actualInt == expectedInt)){
 				fail("expected: "+expectedInt+ " actual: "+actualInt);
@@ -148,7 +148,7 @@ public class GraphProcessorTest {
 		 gp.shortestPathPrecomputation();
 		expectedInt = 0;
 		
-		int actualInt = gp.getShortestDistance("cat", "cat");
+		int actualInt = gp.getShortestDistance("CAT", "CAT");
 	
 			if(!(actualInt == expectedInt)){
 				fail("expected: "+expectedInt+ " actual: "+actualInt);
