@@ -97,10 +97,9 @@ public class GraphProcessorTest {
 		ArrayList<String> expectedPath = new ArrayList<String>();
 		expectedPath.add("CAT");
 		expectedPath.add("HAT");
-		expectedPath.add("RAT");
 		expectedPath.add("HEAT");
 		expectedPath.add("WHEAT");
-		int count = 5;
+		int count = 4;
 		List<String> actualPath = gp.getShortestPath("CAT", "WHEAT");
 		for(int i =0; i< count; i++) {
 			expected = expectedPath.get(i);
@@ -114,7 +113,7 @@ public class GraphProcessorTest {
 	@Test
 	public final void test3ShortestPathSameWord() {
 		String wordList = "listTest";
-		expected="";
+		expected="Rat";
 		actual ="";
 		 gp.populateGraph(wordList);
 		 gp.shortestPathPrecomputation();
@@ -122,8 +121,8 @@ public class GraphProcessorTest {
 			
 			int count = 1;
 			List<String> actualPath = gp.getShortestPath("RAT", "RAT");
-		
-				if(!(actualPath.isEmpty())){
+		actual = actualPath.get(0);
+				if(!(actualPath.contains("RAT"))){
 					fail("expected: "+expected+ " actual: "+actual);
 				}
 			}
