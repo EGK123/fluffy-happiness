@@ -7,7 +7,7 @@
 // GraphProcessorTest.java
 // WordProcessor.java
 //
-// Authors: Patrick Lacina, placina@wisc.edu & Jong Kim, kim532@wisc.edu
+// Authors: Patrick Lacina (placina@wisc.edu), Jong Kim (kim532@wisc.edu)
 // Due date: 10:00 PM on Monday, April 16th
 // Outside sources: None
 //
