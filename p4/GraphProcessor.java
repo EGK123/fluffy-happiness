@@ -22,6 +22,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.PriorityQueue;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -59,9 +60,8 @@ import java.util.stream.Stream;
 public class GraphProcessor {
 
 
-  ArrayList<ArrayList<String>> paths;
+    ArrayList<ArrayList<String>> paths;
 
-  
 
 
     /**
@@ -333,8 +333,9 @@ public class GraphProcessor {
      * @param word1 first word
      * @param word2 second word
      * @return List<String> list of the words
+     * @throws NoSuchElementException
      */
-    public List<String> getShortestPath(String word1, String word2) {
+    public List<String> getShortestPath(String word1, String word2) throws NoSuchElementException {
         int i = 0; // index of first word
         int j = 0; // index of second word
 
@@ -342,10 +343,20 @@ public class GraphProcessor {
 
         while (!paths.get(i).get(0).contains(word1 + "->")) {
             i++; // find first word
+
+            if (i >= paths.size()) {
+                throw new NoSuchElementException(
+                                "ERROR: Word \"" + word1 + "\" does not exist within the graph");
+            }
         }
 
         while (!paths.get(i).get(j).contains("->" + word2)) {
             j++; // find second word
+
+            if (j >= paths.get(i).size()) {
+                throw new NoSuchElementException(
+                                "ERROR: Word \"" + word2 + "\" does not exist within the graph");
+            }
         }
 
         String generalTokens[] = paths.get(i).get(j).split(": ");
@@ -367,10 +378,14 @@ public class GraphProcessor {
      * 
      * @param word1 first word
      * @param word2 second word
-     * @return Integer distance
+     * @return Integer distance, or -1 if there was an error
      */
     public Integer getShortestDistance(String word1, String word2) {
-        return getShortestPath(word1, word2).size() - 1;
+        try {
+            return getShortestPath(word1, word2).size() - 1;
+        } catch (NoSuchElementException e) {
+            return -1;
+        }
     }
 
     /**
@@ -408,34 +423,25 @@ public class GraphProcessor {
         // g.addEdge("at", "bat");
         // g.addEdge("spat", "shat");
         // g.addEdge("shart", "shark");
+        //
+        // GraphProcessor p = new GraphProcessor();
+        // p.graph = g;
+        //
+        // p.populateGraph("word_list.txt");
+        //
+        // p.shortestPathPrecomputation();
+        //
+        // for (ArrayList<String> a : p.paths) {
+        // for (String s : a) {
+        // System.out.println(s);
+        // }
+        // }
+        //
+        // // System.out.println(p.getShortestDistance("shart", "bat"));
+        //
+        // System.out.println(p.getShortestPath("CHARGE", "GIMLETS"));
+        // System.out.println(p.getShortestDistance("CHARGE", "GIMLETS"));
 
-        GraphProcessor p = new GraphProcessor();
-        p.graph = g;
-
-        p.populateGraph("word_list.txt");
-
-        p.shortestPathPrecomputation();
-
-        for (ArrayList<String> a : p.paths) {
-            for (String s : a) {
-                System.out.println(s);
-            }
-        }
-
-        // System.out.println(p.getShortestDistance("shart", "bat"));
-
-        System.out.println(p.getShortestPath("CHARGE", "GIMLETS"));
-        System.out.println(p.getShortestDistance("CHARGE", "GIMLETS"));
-
-
-    // DijkstraPath d = p.new DijkstraPath("cat");
-    // ArrayList<String> test = d.computePaths();
-    //
-    // for (String s : test) {
-    // System.out.println(s);
-    // }
-  
-}
 
         // DijkstraPath d = p.new DijkstraPath("cat");
         // ArrayList<String> test = d.computePaths();
@@ -443,6 +449,15 @@ public class GraphProcessor {
         // for (String s : test) {
         // System.out.println(s);
         // }
+
+    }
+
+    // DijkstraPath d = p.new DijkstraPath("cat");
+    // ArrayList<String> test = d.computePaths();
+    //
+    // for (String s : test) {
+    // System.out.println(s);
+    // }
 
 
 }

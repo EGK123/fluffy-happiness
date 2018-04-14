@@ -19,6 +19,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -177,8 +178,6 @@ public class GraphProcessorTest {
             for (String s : a) {
                 actual = s;
                 expected = paths.get(i);
-                // System.out.println(s);
-                System.out.println(paths.get(i));
                 if (!(a.contains(paths.get(i)))) {
                     actual = "path not found";
                     fail("expected: " + expected + " actual: " + actual);
@@ -189,4 +188,21 @@ public class GraphProcessorTest {
 
     }
 
+    @Test(expected = NoSuchElementException.class)
+    public void test7Word1NotFound() {
+        String wordList = "listTest";
+        gp.populateGraph(wordList);
+        gp.shortestPathPrecomputation();
+        
+        gp.getShortestPath("a word that doesn't exist", "wheat");
+    }
+    
+    @Test(expected = NoSuchElementException.class)
+    public void test8Word2NotFound() {
+        String wordList = "listTest";
+        gp.populateGraph(wordList);
+        gp.shortestPathPrecomputation();
+        
+        gp.getShortestPath("hat", "a word that doesn't exist");
+    }
 }
