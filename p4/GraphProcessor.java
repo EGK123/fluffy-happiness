@@ -59,10 +59,7 @@ import java.util.stream.Stream;
  */
 public class GraphProcessor {
 
-
     ArrayList<ArrayList<String>> paths;
-
-
 
     /**
      * Class that implements Dijkstra's Shortest Path algorithm and contains all data structures
@@ -109,7 +106,6 @@ public class GraphProcessor {
             }
 
             public int compareTo(Pair<WEIGHT, VERTEX> o) {
-                // TODO Auto-generated method stub
                 int thisWeight = (int) this.weight;
                 int otherWeight = (int) o.weight;
                 if (thisWeight < otherWeight) {
@@ -120,7 +116,6 @@ public class GraphProcessor {
                     return 0;
                 }
             }
-
         }
 
         ArrayList<String> vertexList; // will store the nodes, its index should be parralel to all
@@ -162,7 +157,6 @@ public class GraphProcessor {
                 }
 
                 predecessor.add(null);
-
             }
 
             pq = new PriorityQueue<Pair<Integer, String>>();
@@ -230,10 +224,8 @@ public class GraphProcessor {
                                                                          // PQ
                         }
                     }
-
                 }
             }
-
 
             for (String v : vertexList) {
                 last = v;
@@ -269,7 +261,6 @@ public class GraphProcessor {
             path += "," + vertex; // add new vertex
             return path;
         }
-
     }
 
     /**
@@ -323,7 +314,6 @@ public class GraphProcessor {
         }
     }
 
-
     /**
      * Gets the list of words that create the shortest path between word1 and word2
      * 
@@ -367,7 +357,6 @@ public class GraphProcessor {
         }
 
         return l;
-
     }
 
     /**
@@ -400,7 +389,6 @@ public class GraphProcessor {
             DijkstraPath d = new DijkstraPath(s);
             paths.add(d.computePaths());
         }
-
     }
 
     public static void main(String[] args) {
@@ -449,7 +437,6 @@ public class GraphProcessor {
         // for (String s : test) {
         // System.out.println(s);
         // }
-
     }
 
     // DijkstraPath d = p.new DijkstraPath("cat");
@@ -458,7 +445,4 @@ public class GraphProcessor {
     // for (String s : test) {
     // System.out.println(s);
     // }
-
-
 }
-

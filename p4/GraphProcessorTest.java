@@ -33,18 +33,12 @@ import org.junit.Test;
  */
 public class GraphProcessorTest {
 
-
     private GraphProcessor gp;
 
-
-
     String expected = null;
-
-    int expectedInt;
-
-    int actualInt;
-
     String actual = null;
+    int expectedInt;
+    int actualInt;
 
     /**
      * @throws java.lang.Exception
@@ -81,11 +75,10 @@ public class GraphProcessorTest {
         String wordList = "listTest";
         expectedInt = 7;
         actualInt = gp.populateGraph(wordList);
-        System.out.println(actualInt);
+        
         if (actualInt != expectedInt) {
             fail("expected: " + expectedInt + " actual: " + actualInt);
         }
-
     }
 
     @Test
@@ -107,7 +100,6 @@ public class GraphProcessorTest {
                 fail("expected: " + expected + " actual: " + actual);
             }
         }
-
     }
 
     @Test
@@ -169,7 +161,6 @@ public class GraphProcessorTest {
         paths.add("(RIT->RAT): RIT,RAT");
         paths.add("(RIT->CAT): RIT,RAT,CAT");
 
-
         gp.populateGraph(wordList);
         gp.shortestPathPrecomputation();
         expectedInt = 0;
@@ -185,7 +176,6 @@ public class GraphProcessorTest {
                 i++;
             }
         }
-
     }
 
     @Test(expected = NoSuchElementException.class)
@@ -193,70 +183,76 @@ public class GraphProcessorTest {
         String wordList = "listTest";
         gp.populateGraph(wordList);
         gp.shortestPathPrecomputation();
-        
+
         gp.getShortestPath("a word that doesn't exist", "wheat");
     }
-    
+
     @Test(expected = NoSuchElementException.class)
     public void test8Word2NotFound() {
         String wordList = "listTest";
         gp.populateGraph(wordList);
         gp.shortestPathPrecomputation();
-        
+
         gp.getShortestPath("hat", "a word that doesn't exist");
     }
-    
+
     @Test
     public void test9IsAdjacentSubstitution() {
-    	String word1 = "cat";
-    	String word2 = "bat";
-    	if (!WordProcessor.isAdjacent(word1, word2)) {
-    		fail("isAdjacent(" + word1 + ", " + word2 + ") incorrectly returned " + WordProcessor.isAdjacent(word1, word2) + ".");
-    	}
+        String word1 = "cat";
+        String word2 = "bat";
+        if (!WordProcessor.isAdjacent(word1, word2)) {
+            fail("isAdjacent(" + word1 + ", " + word2 + ") incorrectly returned "
+                            + WordProcessor.isAdjacent(word1, word2) + ".");
+        }
     }
-    
+
     @Test
     public void test10IsAdjacentAddition() {
-    	String word1 = "apple : 1**";
-    	String word2 = "apple : $1**";
-    	if (!WordProcessor.isAdjacent(word1, word2)) {
-    		fail("isAdjacent(" + word1 + ", " + word2 + ") incorrectly returned " + WordProcessor.isAdjacent(word1, word2) + ".");
-    	}
+        String word1 = "apple : 1**";
+        String word2 = "apple : $1**";
+        if (!WordProcessor.isAdjacent(word1, word2)) {
+            fail("isAdjacent(" + word1 + ", " + word2 + ") incorrectly returned "
+                            + WordProcessor.isAdjacent(word1, word2) + ".");
+        }
     }
-    
+
     @Test
     public void test11IsAdjacentDeletion() {
-    	String word1 = "apple : 1**";
-    	String word2 = "apple : 1*";
-    	if (!WordProcessor.isAdjacent(word1, word2)) {
-    		fail("isAdjacent(" + word1 + ", " + word2 + ") incorrectly returned " + WordProcessor.isAdjacent(word1, word2) + ".");
-    	}
+        String word1 = "apple : 1**";
+        String word2 = "apple : 1*";
+        if (!WordProcessor.isAdjacent(word1, word2)) {
+            fail("isAdjacent(" + word1 + ", " + word2 + ") incorrectly returned "
+                            + WordProcessor.isAdjacent(word1, word2) + ".");
+        }
     }
-    
+
     @Test
     public void test12IsAdjacentSubstitutionFalse() {
-    	String word1 = "cat";
-    	String word2 = "pht";
-    	if (WordProcessor.isAdjacent(word1, word2)) {
-    		fail("isAdjacent(" + word1 + ", " + word2 + ") incorrectly returned " + WordProcessor.isAdjacent(word1, word2) + ".");
-    	}
+        String word1 = "cat";
+        String word2 = "pht";
+        if (WordProcessor.isAdjacent(word1, word2)) {
+            fail("isAdjacent(" + word1 + ", " + word2 + ") incorrectly returned "
+                            + WordProcessor.isAdjacent(word1, word2) + ".");
+        }
     }
-    
+
     @Test
     public void test13IsAdjacentAdditionFalse() {
-    	String word1 = "apple : 1**";
-    	String word2 = "Ppple : $1**";
-    	if (WordProcessor.isAdjacent(word1, word2)) {
-    		fail("isAdjacent(" + word1 + ", " + word2 + ") incorrectly returned " + WordProcessor.isAdjacent(word1, word2) + ".");
-    	}
+        String word1 = "apple : 1**";
+        String word2 = "Ppple : $1**";
+        if (WordProcessor.isAdjacent(word1, word2)) {
+            fail("isAdjacent(" + word1 + ", " + word2 + ") incorrectly returned "
+                            + WordProcessor.isAdjacent(word1, word2) + ".");
+        }
     }
-    
+
     @Test
     public void test14IsAdjacentDeletionFalse() {
-    	String word1 = "apple : 1**";
-    	String word2 = "appe : 1*";
-    	if (WordProcessor.isAdjacent(word1, word2)) {
-    		fail("isAdjacent(" + word1 + ", " + word2 + ") incorrectly returned " + WordProcessor.isAdjacent(word1, word2) + ".");
-    	}
+        String word1 = "apple : 1**";
+        String word2 = "appe : 1*";
+        if (WordProcessor.isAdjacent(word1, word2)) {
+            fail("isAdjacent(" + word1 + ", " + word2 + ") incorrectly returned "
+                            + WordProcessor.isAdjacent(word1, word2) + ".");
+        }
     }
 }
