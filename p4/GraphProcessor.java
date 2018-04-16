@@ -7,7 +7,7 @@
 // GraphProcessorTest.java
 // WordProcessor.java
 //
-// Authors: Zach Kremer, Ege Kula, Patrick Lacina (placina@wisc.edu)
+// Authors: Zach Kremer, Ege Kula, Patrick Lacina, Nathan Kolbow, Jong Kim
 // Due date: 10:00 PM on Monday, April 16th
 // Outside sources: None
 //
@@ -392,57 +392,6 @@ public class GraphProcessor {
     }
 
     public static void main(String[] args) {
-        GraphADT<String> g = new Graph<String>();
-        // g.addVertex("cat");
-        // g.addVertex("hat");
-        // g.addVertex("bat");
-        // g.addVertex("shart");
-        // g.addVertex("shat");
-        // g.addVertex("at");
-        // g.addVertex("spat");
-        // g.addVertex("shark");
-        // g.addEdge("cat", "hat");
-        // g.addEdge("cat", "bat");
-        // g.addEdge("hat", "bat");
-        // g.addEdge("hat", "shat");
-        // g.addEdge("shat", "shart");
-        // g.addEdge("cat", "at");
-        // g.addEdge("at", "hat");
-        // g.addEdge("at", "bat");
-        // g.addEdge("spat", "shat");
-        // g.addEdge("shart", "shark");
-        //
-        // GraphProcessor p = new GraphProcessor();
-        // p.graph = g;
-        //
-        // p.populateGraph("word_list.txt");
-        //
-        // p.shortestPathPrecomputation();
-        //
-        // for (ArrayList<String> a : p.paths) {
-        // for (String s : a) {
-        // System.out.println(s);
-        // }
-        // }
-        //
-        // // System.out.println(p.getShortestDistance("shart", "bat"));
-        //
-        // System.out.println(p.getShortestPath("CHARGE", "GIMLETS"));
-        // System.out.println(p.getShortestDistance("CHARGE", "GIMLETS"));
-
-
-        // DijkstraPath d = p.new DijkstraPath("cat");
-        // ArrayList<String> test = d.computePaths();
-        //
-        // for (String s : test) {
-        // System.out.println(s);
-        // }
+        // nothing right now
     }
-
-    // DijkstraPath d = p.new DijkstraPath("cat");
-    // ArrayList<String> test = d.computePaths();
-    //
-    // for (String s : test) {
-    // System.out.println(s);
-    // }
 }

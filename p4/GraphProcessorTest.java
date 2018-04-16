@@ -7,7 +7,7 @@
 // GraphProcessorTest.java
 // WordProcessor.java
 //
-// Authors: Zach Kremer, Ege Kula, Patrick Lacina (placina@wisc.edu)
+// Authors: Zach Kremer, Ege Kula, Patrick Lacina, Nathan Kolbow, Jong Kim
 // Due date: 10:00 PM on Monday, April 16th
 // Outside sources: None
 //
@@ -71,18 +71,18 @@ public class GraphProcessorTest {
     }
 
     @Test
-    public final void test1PopulateGraphWithlistTest() {
+    public void test1PopulateGraphWithlistTest() {
         String wordList = "listTest";
         expectedInt = 7;
         actualInt = gp.populateGraph(wordList);
-        
+
         if (actualInt != expectedInt) {
             fail("expected: " + expectedInt + " actual: " + actualInt);
         }
     }
 
     @Test
-    public final void test2ShortestPath() {
+    public void test2ShortestPath() {
         String wordList = "listTest";
         gp.populateGraph(wordList);
         gp.shortestPathPrecomputation();
@@ -103,7 +103,7 @@ public class GraphProcessorTest {
     }
 
     @Test
-    public final void test3ShortestPathSameWord() {
+    public void test3ShortestPathSameWord() {
         String wordList = "listTest";
         expected = "Rat";
         actual = "";
@@ -120,7 +120,7 @@ public class GraphProcessorTest {
     }
 
     @Test
-    public final void test4ShortestDistance() {
+    public void test4ShortestDistance() {
         String wordList = "listTest";
         gp.populateGraph(wordList);
         gp.shortestPathPrecomputation();
@@ -134,7 +134,7 @@ public class GraphProcessorTest {
     }
 
     @Test
-    public final void test5ShortestDistanceSameWord() {
+    public void test5ShortestDistanceSameWord() {
         String wordList = "listTest";
         gp.populateGraph(wordList);
         gp.shortestPathPrecomputation();
@@ -148,7 +148,7 @@ public class GraphProcessorTest {
     }
 
     @Test
-    public final void test6ShortestPathPrecomputation() {
+    public void test6ShortestPathPrecomputation() {
         String wordList = "shortTest";
         ArrayList<String> paths = new ArrayList<String>();
         paths.add("(CAT->CAT): CAT");
