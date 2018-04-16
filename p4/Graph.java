@@ -88,8 +88,7 @@ public class Graph<E> implements GraphADT<E> {
 	 * Decreases the size of the adjacency matrix by 1, removing the specified
 	 * vertex's row and column.
 	 * 
-	 * @param _remove
-	 *            the index of the vertex being removed
+	 * @param _remove the index of the vertex being removed
 	 */
 	private void decrementAM(int _remove) {
 		boolean[][] temp = new boolean[am.length - 1][am.length - 1];
