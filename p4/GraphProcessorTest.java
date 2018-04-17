@@ -72,7 +72,7 @@ public class GraphProcessorTest {
 
     @Test
     public void test1PopulateGraphWithlistTest() {
-        String wordList = "listTest";
+        String wordList = "listTest.txt";
         expectedInt = 7;
         actualInt = gp.populateGraph(wordList);
 
@@ -83,7 +83,7 @@ public class GraphProcessorTest {
 
     @Test
     public void test2ShortestPath() {
-        String wordList = "listTest";
+        String wordList = "listTest.txt";
         gp.populateGraph(wordList);
         gp.shortestPathPrecomputation();
         ArrayList<String> expectedPath = new ArrayList<String>();
@@ -104,7 +104,7 @@ public class GraphProcessorTest {
 
     @Test
     public void test3ShortestPathSameWord() {
-        String wordList = "listTest";
+        String wordList = "listTest.txt";
         expected = "Rat";
         actual = "";
         gp.populateGraph(wordList);
@@ -121,7 +121,7 @@ public class GraphProcessorTest {
 
     @Test
     public void test4ShortestDistance() {
-        String wordList = "listTest";
+        String wordList = "listTest.txt";
         gp.populateGraph(wordList);
         gp.shortestPathPrecomputation();
         expectedInt = 3;
@@ -135,7 +135,7 @@ public class GraphProcessorTest {
 
     @Test
     public void test5ShortestDistanceSameWord() {
-        String wordList = "listTest";
+        String wordList = "listTest.txt";
         gp.populateGraph(wordList);
         gp.shortestPathPrecomputation();
         expectedInt = 0;
@@ -149,7 +149,7 @@ public class GraphProcessorTest {
 
     @Test
     public void test6ShortestPathPrecomputation() {
-        String wordList = "shortTest";
+        String wordList = "shortTest.txt";
         ArrayList<String> paths = new ArrayList<String>();
         paths.add("(CAT->CAT): CAT");
         paths.add("(CAT->RAT): CAT,RAT");
@@ -180,7 +180,7 @@ public class GraphProcessorTest {
 
     @Test(expected = NoSuchElementException.class)
     public void test7Word1NotFound() {
-        String wordList = "listTest";
+        String wordList = "listTest.txt";
         gp.populateGraph(wordList);
         gp.shortestPathPrecomputation();
 
@@ -189,7 +189,7 @@ public class GraphProcessorTest {
 
     @Test(expected = NoSuchElementException.class)
     public void test8Word2NotFound() {
-        String wordList = "listTest";
+        String wordList = "listTest.txt";
         gp.populateGraph(wordList);
         gp.shortestPathPrecomputation();
 
