@@ -306,6 +306,7 @@ public class GraphProcessor {
                     }
                 }
             }
+            shortestPathPrecomputation();
             return listOfWords.size();
         } catch (IOException e) {
             System.out.println("Incorrect filepath.");
