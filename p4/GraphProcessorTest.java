@@ -85,7 +85,7 @@ public class GraphProcessorTest {
     public void test2ShortestPath() {
         String wordList = "listTest.txt";
         gp.populateGraph(wordList);
-        gp.shortestPathPrecomputation();
+        // gp.shortestPathPrecomputation();
         ArrayList<String> expectedPath = new ArrayList<String>();
         expectedPath.add("CAT");
         expectedPath.add("HAT");
@@ -108,7 +108,7 @@ public class GraphProcessorTest {
         expected = "Rat";
         actual = "";
         gp.populateGraph(wordList);
-        gp.shortestPathPrecomputation();
+        // gp.shortestPathPrecomputation();
         ArrayList<String> expectedPath = new ArrayList<String>();
 
         int count = 1;
@@ -123,7 +123,7 @@ public class GraphProcessorTest {
     public void test4ShortestDistance() {
         String wordList = "listTest.txt";
         gp.populateGraph(wordList);
-        gp.shortestPathPrecomputation();
+        // gp.shortestPathPrecomputation();
         expectedInt = 3;
 
         int actualInt = gp.getShortestDistance("CAT", "WHEAT");
@@ -137,7 +137,7 @@ public class GraphProcessorTest {
     public void test5ShortestDistanceSameWord() {
         String wordList = "listTest.txt";
         gp.populateGraph(wordList);
-        gp.shortestPathPrecomputation();
+        // gp.shortestPathPrecomputation();
         expectedInt = 0;
 
         int actualInt = gp.getShortestDistance("CAT", "CAT");
@@ -162,7 +162,7 @@ public class GraphProcessorTest {
         paths.add("(RIT->CAT): RIT,RAT,CAT");
 
         gp.populateGraph(wordList);
-        gp.shortestPathPrecomputation();
+        // gp.shortestPathPrecomputation();
         expectedInt = 0;
         int i = 0;
         for (ArrayList<String> a : gp.paths) {
@@ -182,7 +182,7 @@ public class GraphProcessorTest {
     public void test7Word1NotFound() {
         String wordList = "listTest.txt";
         gp.populateGraph(wordList);
-        gp.shortestPathPrecomputation();
+        // gp.shortestPathPrecomputation();
 
         gp.getShortestPath("a word that doesn't exist", "wheat");
     }
