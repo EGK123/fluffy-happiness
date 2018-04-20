@@ -1,7 +1,6 @@
 package application;
 
 public interface Scoreable {
-  Team getWinner();
-
-  Team getLoser();
+	public Team getWinner();
+	public Team getLoser();
 }
