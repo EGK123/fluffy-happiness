@@ -5,50 +5,21 @@ import javafx.scene.layout.*;
 import javafx.scene.control.*;
 
 public class VersusBox extends VBox implements Scoreable {
-<<<<<<< HEAD
   private int teamScore1;
   private int teamScore2;
-=======
-	int teamScore1;
-	int teamScore2;
->>>>>>> refs/remotes/origin/master
 
-<<<<<<< HEAD
   private HBox team1Box;
   private HBox team2Box;
-=======
-	HBox team1Box;
-	HBox team2Box;
->>>>>>> refs/remotes/origin/master
 
-<<<<<<< HEAD
   private HBox btnBox;
-=======
-	HBox btnBox;
->>>>>>> refs/remotes/origin/master
-
-<<<<<<< HEAD
+  
   private Label team1Lbl;
   private Label team2Lbl;
-=======
-	Label team1Lbl;
-	Label team2Lbl;
->>>>>>> refs/remotes/origin/master
 
-<<<<<<< HEAD
   private TextField team1TxtField;
   private TextField team2TxtField;
-=======
-	TextField team1TxtField;
-	TextField team2TxtField;
->>>>>>> refs/remotes/origin/master
 
-<<<<<<< HEAD
   private Button submitBtn;
-=======
-	Button submitBtn;
-	TypeOfMatch matchType;
->>>>>>> refs/remotes/origin/master
 
 	public VersusBox() {
 		HBox team1Box = new HBox();
