@@ -1,6 +1,4 @@
 package application;
-
-import javafx.*;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 
@@ -54,7 +52,7 @@ public class VersusBox extends VBox implements Scoreable {
 
   @Override
   public Team getWinner() {
-    // TODO Auto-generated method stub
+    int team1Score = Integer.parseInt((String) team1TxtField.getText());
     return null;
   }
 
