@@ -4,7 +4,7 @@ import javafx.*;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 
-public class VersusBox extends VBox {
+public class VersusBox extends VBox implements Scoreable {
   int teamScore1;
   int teamScore2;
 
@@ -46,6 +46,18 @@ public class VersusBox extends VBox {
 
   public VersusBox(TypeOfMatch match, Team team1, Team team2) {
 
+  }
+
+  @Override
+  public Team getWinner() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public Team getLoser() {
+    // TODO Auto-generated method stub
+    return null;
   }
 
 }
