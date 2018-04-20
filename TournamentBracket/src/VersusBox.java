@@ -37,8 +37,13 @@ public class VersusBox extends VBox {
     
   }
 
-  public VersusBox(int something) {
+  public VersusBox(TypeOfMatch match) {
 
+    
+  }
+  
+  public VersusBox(TypeOfMatch match, Team team1, Team team2) {
+    
   }
 
 }
