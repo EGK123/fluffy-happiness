@@ -1,4 +1,5 @@
 package application;
+
 import javafx.*;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
@@ -23,28 +24,28 @@ public class VersusBox extends VBox {
   public VersusBox() {
     int teamScore1 = 0;
     int teamScore2 = 0;
-    
+
     HBox team1Box = null;
     HBox team2Box = null;
     HBox btnBox = null;
-    
+
     team1Lbl = null;
     team2Lbl = null;
-    
+
     team1TxtField = null;
     team2TxtField = null;
-    
+
     submitBtn = null;
-    
+
   }
 
   public VersusBox(TypeOfMatch match) {
 
-    
+
   }
-  
+
   public VersusBox(TypeOfMatch match, Team team1, Team team2) {
-    
+
   }
 
 }
