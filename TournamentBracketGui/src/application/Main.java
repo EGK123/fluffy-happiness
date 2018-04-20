@@ -36,7 +36,6 @@ public class Main extends Application {
 				double padding = (scene.getHeight() - (vboxHeight * numberOfTeams/divisor))/(numberOfTeams+1);
 				for(int j = 0; j < numberOfTeams/divisor; j++) {
 					VersusBox vbox = new VersusBox(TypeOfMatch.NORMAL_GAME, new Team("asdf", vboxHeight), new Team("fdsa", (int)padding));
-					vbox.setPadding(new Insets(padding));
 					round[i].getChildren().add(vbox);
 					divisor *= 2;
 				}
