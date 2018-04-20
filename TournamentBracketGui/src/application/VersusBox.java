@@ -65,6 +65,7 @@ public class VersusBox extends VBox implements Scoreable {
       e.printStackTrace();
     }
 
+    // return null if it's a tie
     return (teamScore1 > teamScore2) ? team1 : ((teamScore2 > teamScore1) ? team2 : null);
   }
 
@@ -78,6 +79,7 @@ public class VersusBox extends VBox implements Scoreable {
       e.printStackTrace();
     }
 
+    // return null if it's a tie
     return (teamScore1 > teamScore2) ? team2 : ((teamScore2 > teamScore1) ? team1 : null);
   }
 
