@@ -1,6 +1,5 @@
 package application;
 
-import javafx.*;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 
@@ -20,32 +19,37 @@ public class VersusBox extends VBox {
   TextField team2TxtField;
 
   Button submitBtn;
+  TypeOfMatch matchType;
 
   public VersusBox() {
-    int teamScore1 = 0;
-    int teamScore2 = 0;
+    HBox team1Box = new HBox();
+    HBox team2Box = new HBox();
+    HBox btnBox = new HBox();
 
-    HBox team1Box = null;
-    HBox team2Box = null;
-    HBox btnBox = null;
+    team1Lbl = new Label("");
+    team2Lbl = new Label("");
 
-    team1Lbl = null;
-    team2Lbl = null;
+    team1TxtField = new TextField();
+    team2TxtField = new TextField();
 
-    team1TxtField = null;
-    team2TxtField = null;
-
-    submitBtn = null;
-
+    submitBtn = new Button();
+    
+    team1Box.getChildren().addAll(team1Lbl, team1TxtField);
+    team2Box.getChildren().addAll(team2Lbl, team2TxtField);
+    btnBox.getChildren().add(submitBtn);
+    
+    this.getChildren().addAll(team1Box, team2Box, btnBox);
   }
 
   public VersusBox(TypeOfMatch match) {
-
-
+	  this();
+	  matchType = match;
   }
 
   public VersusBox(TypeOfMatch match, Team team1, Team team2) {
-
+	  this(match);
+	  team1Lbl.setText(team1.seed + " " + team1.teamName);
+	  team2Lbl.setText(team2.seed +  " " + team2.teamName);
   }
 
 }
