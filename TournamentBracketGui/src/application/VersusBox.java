@@ -1,24 +1,33 @@
 package application;
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/master
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 
 public class VersusBox extends VBox implements Scoreable {
-  private int teamScore1;
-  private int teamScore2;
+	private int teamScore1;
+	private int teamScore2;
 
-  private HBox team1Box;
-  private HBox team2Box;
+	private Team team1;
+	private Team team2;
+	
+	private HBox team1Box;
+	private HBox team2Box;
 
-  private HBox btnBox;
-  
-  private Label team1Lbl;
-  private Label team2Lbl;
+	private HBox btnBox;
 
-  private TextField team1TxtField;
-  private TextField team2TxtField;
+	private Label team1Lbl;
+	private Label team2Lbl;
 
-  private Button submitBtn;
+	private TextField team1TxtField;
+	private TextField team2TxtField;
 
+	private Button submitBtn;
+
+	private TypeOfMatch matchType;
+	
 	public VersusBox() {
 		HBox team1Box = new HBox();
 		HBox team2Box = new HBox();
@@ -41,7 +50,7 @@ public class VersusBox extends VBox implements Scoreable {
 
 	public VersusBox(TypeOfMatch match) {
 		this();
-		matchType = match;
+		setMatchType(match);
 	}
 
 	public VersusBox(TypeOfMatch match, Team team1, Team team2) {
@@ -50,35 +59,42 @@ public class VersusBox extends VBox implements Scoreable {
 		team2Lbl.setText(team2.seed + " " + team2.teamName);
 	}
 
-  @Override
-  public Team getWinner() {
-    int team1Score = Integer.parseInt((String) team1TxtField.getText());
-    return null;
-  }
+	@Override
+	public Team getWinner() {
+		return (teamScore1 > teamScore2) ? team1 : ((teamScore2 > teamScore1) ? team2 : null);
+	}
 
-  @Override
-  public Team getLoser() {
-    // TODO Auto-generated method stub
-    return null;
-  }
 
-  public void sendWinner(Team winner) {
+	@Override
+	public Team getLoser() {
+		return (teamScore1 > teamScore2) ? team2 : ((teamScore2 > teamScore1) ? team1 : null);
+	}
 
-  }
+	public void sendWinner(Team winner) {
 
-  public int getTeamScore1() {
-    return teamScore1;
-  }
+	}
 
-  public void setTeamScore1(int teamScore1) {
-    this.teamScore1 = teamScore1;
-  }
+	public int getTeamScore1() {
+		return teamScore1;
+	}
 
-  public int getTeamScore2() {
-    return teamScore2;
-  }
+	public void setTeamScore1(int teamScore1) {
+		this.teamScore1 = teamScore1;
+	}
 
-  public void setTeamScore2(int teamScore2) {
-    this.teamScore2 = teamScore2;
-  }
+	public int getTeamScore2() {
+		return teamScore2;
+	}
+
+	public void setTeamScore2(int teamScore2) {
+		this.teamScore2 = teamScore2;
+	}
+
+	public TypeOfMatch getMatchType() {
+		return matchType;
+	}
+
+	public void setMatchType(TypeOfMatch matchType) {
+		this.matchType = matchType;
+	}
 }
