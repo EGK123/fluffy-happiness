@@ -36,7 +36,7 @@ public class VersusBox extends VBox implements Scoreable {
     team1TxtField = new TextField();
     team2TxtField = new TextField();
 
-    submitBtn = new Button();
+    submitBtn = new Button("Submit");
 
     team1Box.getChildren().addAll(team1Lbl, team1TxtField);
     team2Box.getChildren().addAll(team2Lbl, team2TxtField);
