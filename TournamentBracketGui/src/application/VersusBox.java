@@ -45,7 +45,7 @@ public class VersusBox extends VBox implements Scoreable {
 
 	public VersusBox(TypeOfMatch match) {
 		this();
-		matchType = match;
+		setMatchType(match);
 	}
 
 	public VersusBox(TypeOfMatch match, Team team1, Team team2) {
@@ -84,5 +84,13 @@ public class VersusBox extends VBox implements Scoreable {
 
 	public void setTeamScore2(int teamScore2) {
 		this.teamScore2 = teamScore2;
+	}
+
+	public TypeOfMatch getMatchType() {
+		return matchType;
+	}
+
+	public void setMatchType(TypeOfMatch matchType) {
+		this.matchType = matchType;
 	}
 }
