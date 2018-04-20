@@ -64,7 +64,7 @@ public class VersusBox extends VBox implements Scoreable {
     } catch (Exception e) {
       e.printStackTrace();
     }
-    
+
     return (teamScore1 > teamScore2) ? team1 : ((teamScore2 > teamScore1) ? team2 : null);
   }
 
@@ -77,7 +77,7 @@ public class VersusBox extends VBox implements Scoreable {
     } catch (Exception e) {
       e.printStackTrace();
     }
-    
+
     return (teamScore1 > teamScore2) ? team2 : ((teamScore2 > teamScore1) ? team1 : null);
   }
 
@@ -100,7 +100,7 @@ public class VersusBox extends VBox implements Scoreable {
   public void setTeamScore2(int teamScore2) {
     this.teamScore2 = teamScore2;
   }
-  
+
   public TypeOfMatch getMatchType() {
     return matchType;
   }
