@@ -5,21 +5,21 @@ import javafx.scene.layout.*;
 import javafx.scene.control.*;
 
 public class VersusBox extends VBox implements Scoreable {
-  int teamScore1;
-  int teamScore2;
+  private int teamScore1;
+  private int teamScore2;
 
-  HBox team1Box;
-  HBox team2Box;
+  private HBox team1Box;
+  private HBox team2Box;
 
-  HBox btnBox;
+  private HBox btnBox;
 
-  Label team1Lbl;
-  Label team2Lbl;
+  private Label team1Lbl;
+  private Label team2Lbl;
 
-  TextField team1TxtField;
-  TextField team2TxtField;
+  private TextField team1TxtField;
+  private TextField team2TxtField;
 
-  Button submitBtn;
+  private Button submitBtn;
 
   public VersusBox() {
     int teamScore1 = 0;
@@ -60,4 +60,23 @@ public class VersusBox extends VBox implements Scoreable {
     return null;
   }
 
+  public void sendWinner(Team winner) {
+
+  }
+
+  public int getTeamScore1() {
+    return teamScore1;
+  }
+
+  public void setTeamScore1(int teamScore1) {
+    this.teamScore1 = teamScore1;
+  }
+
+  public int getTeamScore2() {
+    return teamScore2;
+  }
+
+  public void setTeamScore2(int teamScore2) {
+    this.teamScore2 = teamScore2;
+  }
 }
