@@ -26,9 +26,9 @@ public class VersusBox extends VBox implements Scoreable {
   private TypeOfMatch matchType;
 
   public VersusBox() {
-    HBox team1Box = new HBox();
-    HBox team2Box = new HBox();
-    HBox btnBox = new HBox();
+    team1Box = new HBox();
+    team2Box = new HBox();
+    btnBox = new HBox();
 
     team1Lbl = new Label("TBD");
     team2Lbl = new Label("TBD");
