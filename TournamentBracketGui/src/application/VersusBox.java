@@ -30,8 +30,8 @@ public class VersusBox extends VBox implements Scoreable {
     HBox team2Box = new HBox();
     HBox btnBox = new HBox();
 
-    team1Lbl = new Label("");
-    team2Lbl = new Label("");
+    team1Lbl = new Label("TBD");
+    team2Lbl = new Label("TBD");
 
     team1TxtField = new TextField();
     team2TxtField = new TextField();
