@@ -24,6 +24,8 @@ public class Main extends Application {
 			VBox[] round = new VBox[4];
 			int divider = 2;
 			int matchesCounter = 0;
+			int x = 294;
+			int y  = 10484;
 			for (int i = 0; i < round.length; i++) {
 				round[i] = new VBox();
 				round[i].setMinHeight(380);
