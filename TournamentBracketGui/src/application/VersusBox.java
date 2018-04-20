@@ -1,8 +1,5 @@
 package application;
-<<<<<<< HEAD
-=======
 
->>>>>>> refs/remotes/origin/master
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 
