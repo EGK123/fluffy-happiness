@@ -125,14 +125,19 @@ public class Main extends Application {
 			
 			
 			
-			
+			VBox winners = new VBox();
+			Label first = new Label("First: TBD");
+			Label second = new Label("Second: TBD");
+			Label third = new Label("Third: TBD");
+			winners.getChildren().addAll(first, second, third);
 //			ListView aaa = new ListView(myHBox.getChildren());
 			ScrollPane scroll = new ScrollPane();
 			scroll.setContent(grid);
 			root.setCenter(scroll);
 			root.setLeft(teamList);
+			root.setRight(winners);
 			
-			Scene scene = new Scene(root,1200,800);
+			Scene scene = new Scene(root,1400,800);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
