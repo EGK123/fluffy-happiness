@@ -4,110 +4,118 @@ import javafx.scene.layout.*;
 import javafx.scene.control.*;
 
 public class VersusBox extends VBox implements Scoreable {
-  private int teamScore1;
-  private int teamScore2;
+	private int teamScore1;
+	private int teamScore2;
 
-  private Team team1;
-  private Team team2;
+	private Team team1;
+	private Team team2;
 
-  private HBox team1Box;
-  private HBox team2Box;
+	private HBox team1Box;
+	private HBox team2Box;
 
-  private HBox btnBox;
+	private HBox btnBox;
 
-  private Label team1Lbl;
-  private Label team2Lbl;
+	private Label team1Lbl;
+	private Label team2Lbl;
 
-  private TextField team1TxtField;
-  private TextField team2TxtField;
+	private TextField team1TxtField;
+	private TextField team2TxtField;
 
-  private Button submitBtn;
+	private Button submitBtn;
 
-  private TypeOfMatch matchType;
+	private TypeOfMatch matchType;
 
-  public VersusBox() {
-    team1Box = new HBox();
-    team2Box = new HBox();
-    btnBox = new HBox();
+	public VersusBox(String s) {
+		this.setMinHeight(100);
+		this.setMaxHeight(100);
+		this.setPrefHeight(100);
+	}
 
-    team1Lbl = new Label("TBD");
-    team2Lbl = new Label("TBD");
+	public VersusBox() {
+		this.setMinHeight(100);
+		this.setMaxHeight(100);
+		this.setPrefHeight(100);
+		team1Box = new HBox();
+		team2Box = new HBox();
+		btnBox = new HBox();
 
-    team1TxtField = new TextField();
-    team2TxtField = new TextField();
+		team1Lbl = new Label("TBD");
+		team2Lbl = new Label("TBD");
 
-    submitBtn = new Button("Submit");
+		team1TxtField = new TextField();
+		team2TxtField = new TextField();
 
-    team1Box.getChildren().addAll(team1Lbl, team1TxtField);
-    team2Box.getChildren().addAll(team2Lbl, team2TxtField);
-    btnBox.getChildren().add(submitBtn);
+		submitBtn = new Button("Submit");
 
-    this.getChildren().addAll(team1Box, team2Box, btnBox);
-  }
+		team1Box.getChildren().addAll(team1Lbl, team1TxtField);
+		team2Box.getChildren().addAll(team2Lbl, team2TxtField);
+		btnBox.getChildren().add(submitBtn);
 
-  public VersusBox(TypeOfMatch match) {
-    this();
-    setMatchType(match);
-  }
+		this.getChildren().addAll(team1Box, team2Box, btnBox);
+	}
 
-  public VersusBox(TypeOfMatch match, Team team1, Team team2) {
-    this(match);
-    team1Lbl.setText(team1.seed + " " + team1.teamName);
-    team2Lbl.setText(team2.seed + " " + team2.teamName);
-  }
+	public VersusBox(TypeOfMatch match) {
+		this();
+		setMatchType(match);
+	}
 
-  @Override
-  public Team getWinner() {
-    try {
-      teamScore1 = Integer.parseInt(team1TxtField.getText());
-      teamScore2 = Integer.parseInt(team2TxtField.getText());
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
+	public VersusBox(TypeOfMatch match, Team team1, Team team2) {
+		this(match);
+		team1Lbl.setText(team1.seed + " " + team1.teamName);
+		team2Lbl.setText(team2.seed + " " + team2.teamName);
+	}
 
-    // return null if it's a tie
-    return (teamScore1 > teamScore2) ? team1 : ((teamScore2 > teamScore1) ? team2 : null);
-  }
+	@Override
+	public Team getWinner() {
+		try {
+			teamScore1 = Integer.parseInt(team1TxtField.getText());
+			teamScore2 = Integer.parseInt(team2TxtField.getText());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
+		// return null if it's a tie
+		return (teamScore1 > teamScore2) ? team1 : ((teamScore2 > teamScore1) ? team2 : null);
+	}
 
-  @Override
-  public Team getLoser() {
-    try {
-      teamScore1 = Integer.parseInt(team1TxtField.getText());
-      teamScore2 = Integer.parseInt(team2TxtField.getText());
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
+	@Override
+	public Team getLoser() {
+		try {
+			teamScore1 = Integer.parseInt(team1TxtField.getText());
+			teamScore2 = Integer.parseInt(team2TxtField.getText());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-    // return null if it's a tie
-    return (teamScore1 > teamScore2) ? team2 : ((teamScore2 > teamScore1) ? team1 : null);
-  }
+		// return null if it's a tie
+		return (teamScore1 > teamScore2) ? team2 : ((teamScore2 > teamScore1) ? team1 : null);
+	}
 
-  public void sendWinner(Team winner) {
+	public void sendWinner(Team winner) {
 
-  }
+	}
 
-  public int getTeamScore1() {
-    return teamScore1;
-  }
+	public int getTeamScore1() {
+		return teamScore1;
+	}
 
-  public void setTeamScore1(int teamScore1) {
-    this.teamScore1 = teamScore1;
-  }
+	public void setTeamScore1(int teamScore1) {
+		this.teamScore1 = teamScore1;
+	}
 
-  public int getTeamScore2() {
-    return teamScore2;
-  }
+	public int getTeamScore2() {
+		return teamScore2;
+	}
 
-  public void setTeamScore2(int teamScore2) {
-    this.teamScore2 = teamScore2;
-  }
+	public void setTeamScore2(int teamScore2) {
+		this.teamScore2 = teamScore2;
+	}
 
-  public TypeOfMatch getMatchType() {
-    return matchType;
-  }
+	public TypeOfMatch getMatchType() {
+		return matchType;
+	}
 
-  public void setMatchType(TypeOfMatch matchType) {
-    this.matchType = matchType;
-  }
+	public void setMatchType(TypeOfMatch matchType) {
+		this.matchType = matchType;
+	}
 }
