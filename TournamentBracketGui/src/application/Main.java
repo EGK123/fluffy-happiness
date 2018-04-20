@@ -1,6 +1,8 @@
 package application;
 	
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -105,18 +107,25 @@ public class Main extends Application {
 //				bottomSpaces = topSpaces+1;
 //				places = places / 2;
 			}
-			String[] teamNames = new String[] {"T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8"};
-			Label[] teams = new Label[8];
-			HBox myHBox = new HBox();
-			for (int i = 0; i < 8; i++) {
-				teams[i] = new Label(teamNames[i]);
-				myHBox.getChildren().add(teams[i]);
-			}
+//			String[] teamNames = new String[] {"T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8"};
+//			Label[] teams = new Label[8];
+//			HBox myHBox = new HBox();
+//			for (int i = 0; i < 8; i++) {
+//				teams[i] = new Label(teamNames[i]);
+//				myHBox.getChildren().add(teams[i]);
+//			}
+			
+			ListView<String> teamList = new ListView<String>();
+			ObservableList<String> items =FXCollections.observableArrayList (
+				    "Single", "Double", "Suite", "Family App");
+			teamList.setItems(items);
 			
 			
-			ListView aaa = new ListView(myHBox.getChildren());
+			
+			
+//			ListView aaa = new ListView(myHBox.getChildren());
 			root.setCenter(grid);
-			root.setLeft(aaa);
+			root.setLeft(teamList);
 			
 			Scene scene = new Scene(root,1200,1200);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
