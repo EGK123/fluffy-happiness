@@ -1,5 +1,7 @@
 package application;
 	
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,6 +10,7 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.BorderStroke;
@@ -78,9 +81,9 @@ public class Main extends Application {
 			int bottomSpaces = topSpaces + 1;
 			int places = 8;
 			
-			for (int i = 0; i < 3; i++ ) {
+			for (int i = 0; i < 4; i++ ) {
 
-				for (int j = 0; j < 7; j++) {
+				for (int j = 0; j < 15; j++) {
 					if (j % Math.pow(2, i+1) == Math.pow(2,i) - 1) {
 						grid.add(new VersusBox(), i, j);
 					} else {
@@ -117,17 +120,19 @@ public class Main extends Application {
 			
 			ListView<String> teamList = new ListView<String>();
 			ObservableList<String> items =FXCollections.observableArrayList (
-				    "Single", "Double", "Suite", "Family App");
+				    "T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8", "T9", "T10", "T11", "T12", "T13", "T14", "T15", "T16");
 			teamList.setItems(items);
 			
 			
 			
 			
 //			ListView aaa = new ListView(myHBox.getChildren());
-			root.setCenter(grid);
+			ScrollPane scroll = new ScrollPane();
+			scroll.setContent(grid);
+			root.setCenter(scroll);
 			root.setLeft(teamList);
 			
-			Scene scene = new Scene(root,1200,1200);
+			Scene scene = new Scene(root,1200,800);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
