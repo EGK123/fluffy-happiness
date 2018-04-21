@@ -5,6 +5,8 @@ import javafx.geometry.Insets;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.BorderStroke;
@@ -30,7 +32,7 @@ public class Main extends Application {
 				round[i].setMaxHeight(600);
 				round[i].setPrefHeight(390);
 				round[i].setStyle("-fx-background-color: #FFFFFF;");
-				for (int j = 0; j < (numberOfTeams / divider); j++) {
+				for (int j = 0; j < (numberOfTeams * divider); j++) {
 //					matches[matchesCounter].setPadding(new Insets(20, 10, 20, 10));
 //					round[i].getChildren().add(matches[matchesCounter]);
 					Label a = new Label("Hello");
@@ -45,9 +47,10 @@ public class Main extends Application {
 				bracketBox.getChildren().add(round[i]);
 				divider *= 2;
 			}
-			
 			BorderPane root = new BorderPane();
-			root.setCenter(bracketBox);
+			ScrollPane scroll = new ScrollPane();
+			scroll.setContent(bracketBox);
+			root.setCenter(scroll);
 			Scene scene = new Scene(root,400,800);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
