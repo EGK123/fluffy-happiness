@@ -166,16 +166,4 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
         }
     }
 
-    @Override
-    public boolean validateScores() {
-        if (team1TxtField.getText().equals(null) || team1TxtField.getText().equals("")) {
-            return false;
-        }
-
-        if (team2TxtField.getText().equals(null) || team2TxtField.getText().equals("")) {
-            return false;
-        }
-
-        return true;
-    }
 }
