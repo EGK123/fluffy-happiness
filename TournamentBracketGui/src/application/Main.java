@@ -28,7 +28,7 @@ public class Main extends Application {
 	public static ArrayList<Team> parseInput(String filename) {
 		// fake input until we know how we'll be given actual team input
 		ArrayList<Team> list = new ArrayList<Team>();
-		for (int i = 1; i <= 16; i++) {
+		for (int i = 1; i <= 32; i++) {
 			list.add(new Team("Team " + i, i));
 		}
 		return list;
@@ -88,7 +88,7 @@ public class Main extends Application {
 
 		// organize the teams into their correct display order
 		Team[] out = new Team[teams.size()];
-		Team[][] helper = new Team[teams.size() / 4][teams.size() / 4];
+		Team[][] helper = new Team[teams.size() / 4][4];
 		for (int i = 0; i < teams.size(); i += 4) {
 			helper[i / 4][0] = temp[i];
 			helper[i / 4][1] = temp[i + 1];
@@ -96,7 +96,7 @@ public class Main extends Application {
 			helper[i / 4][3] = temp[i + 3];
 		}
 
-		Team[][] helperTemp = new Team[teams.size() / 4][teams.size() / 4];
+		Team[][] helperTemp = new Team[teams.size() / 4][4];
 		for (int i = 0; i < helper.length; i++) {
 			switch (((i + 1) / 2) % 2) {
 			case 0:
@@ -130,7 +130,7 @@ public class Main extends Application {
 			BorderPane root = new BorderPane();
 			GridPane grid = new GridPane();
 
-			int numberOfTeams = 16;
+			int numberOfTeams = 32;
 			VersusBox[] matches = new VersusBox[numberOfTeams - 1];
 			int teamSelector = 0;
 			int heapBuilder = numberOfTeams - 2;
@@ -139,7 +139,7 @@ public class Main extends Application {
 
 			for (int i = 0; i < Math.log(numberOfTeams) / Math.log(2); i++) {
 
-				for (int j = 0; j < 15; j++) {
+				for (int j = 0; j < numberOfTeams - 1; j++) {
 					if (j % Math.pow(2, i + 1) == Math.pow(2, i) - 1) {
 						TypeOfMatch matchType = (i == totalRounds - 1) ? TypeOfMatch.GRAND_CHAMPIONSHIP
 								: (i == totalRounds - 2) ? TypeOfMatch.SEMI_FINAL
