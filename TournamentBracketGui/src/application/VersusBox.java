@@ -4,6 +4,7 @@ import javafx.scene.layout.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 
 public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEvent> {
     private VersusBox next;
@@ -43,7 +44,9 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
         team2Lbl = new Label("TBD");
 
         team1TxtField = new TextField();
+        team1TxtField.setOnAction(this);
         team2TxtField = new TextField();
+        team2TxtField.setOnAction(this);
 
         submitBtn = new Button("Submit");
         submitBtn.setOnAction(this);
@@ -79,6 +82,11 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
         team2Lbl.setText(team2.toString());
     }
 
+    private void badInputAlert() {
+    	Alert abox = new Alert(AlertType.ERROR, "Invalid input, please make sure you entered the scores correctly.");
+    	abox.showAndWait();
+    }
+    
     @Override
     public Team getWinner() {
         if (parseScores()) {
@@ -86,7 +94,8 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
             return (teamScore1 > teamScore2) ? team1 : ((teamScore2 > teamScore1) ? team2 : null);
         } else {
             // bad input--return null
-            return null;
+        	badInputAlert();
+        	return null;
         }
     }
 
@@ -97,7 +106,8 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
             return (teamScore1 > teamScore2) ? team2 : ((teamScore2 > teamScore1) ? team1 : null);
         } else {
             // bad input--return null
-            return null;
+        	badInputAlert();
+        	return null;
         }
     }
 
@@ -151,6 +161,7 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
 
     @Override
     public void handle(ActionEvent e) {
+    	
         switch (matchType) {
             case GRAND_CHAMPIONSHIP:
                 Main.setFirstPlace(getWinner());

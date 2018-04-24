@@ -35,6 +35,9 @@ public class Main extends Application {
 	}
 
 	private static ArrayList<Team> sortBySeed(ArrayList<Team> teams) {
+		if(teams.size() <= 4)
+			return teams;
+		
 		ArrayList<Team> out = new ArrayList<Team>();
 		int numberOfTeams = teams.size();
 		for (int i = 0; i < numberOfTeams; i++) {
@@ -60,8 +63,9 @@ public class Main extends Application {
 
 	// pre-condition: takes input only from lists already sorted by seed
 	private static ArrayList<Team> sortForFirstRound(ArrayList<Team> teams) {
-		// need to add edge cases, teams.size() < 4
-
+		if(teams.size() <= 4)
+			return teams;
+		
 		Team[] temp = new Team[teams.size()];
 		// organize the teams into correct set of 2 matches
 		int currSeed = 1;
@@ -117,13 +121,17 @@ public class Main extends Application {
 		return new ArrayList<Team>(Arrays.asList(out));
 	}
 
+	private ArrayList<Team> parseAndSort(String filename) {
+		return sortForFirstRound(sortBySeed(parseInput(filename)));
+	}
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			primaryStage.setTitle("Tournament Bracket");
+			
 			// parses the first command-line argument, which should be the input filename
-			teams = parseInput(""); // getParameters().getRaw().get(0));
-			teams = sortBySeed(teams);
-			teams = sortForFirstRound(teams);
+			teams = parseAndSort(""); // getParameters().getRaw().get(0));
 			for (int i = 0; i < teams.size(); i++)
 				System.out.println(teams.get(i).toString());
 
