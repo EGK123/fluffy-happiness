@@ -1,7 +1,10 @@
 package application;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -23,21 +26,121 @@ public class Main extends Application {
 	// used to check who gets 3rd place
 	private static int firstQFinalMatchScore = Integer.MAX_VALUE;
 	private static Team firstQFinalTeam;
-	private static ArrayList<Team> teams;
+	private static int numberOfTeams;
 
-	public static ArrayList<Team> parseInput(String filename) {
-		// fake input until we know how we'll be given actual team input
-		ArrayList<Team> list = new ArrayList<Team>();
-		for (int i = 1; i <= 32; i++) {
-			list.add(new Team("Team " + i, i));
+	@Override
+	public void start(Stage primaryStage) {
+		try {
+			primaryStage.setTitle("Tournament Bracket");
+	
+			// parses the first command-line argument, which should be the input filename
+			ArrayList<Team> teams = parseInput("teams.txt"); // getParameters().getRaw().get(0));
+			ArrayList<Team> sortedTeams = sortForFirstRound(sortBySeed(teams));
+			for (int i = 0; i < sortedTeams.size(); i++)
+				System.out.println(sortedTeams.get(i).toString());
+	
+			BorderPane root = new BorderPane();
+			GridPane grid = new GridPane();
+	
+			if (teams.size() > 0) {
+				VersusBox[] matches = new VersusBox[numberOfTeams - 1];
+				int teamSelector = 0;
+				int heapBuilder = numberOfTeams - 2;
+	
+				int totalRounds = (int) (Math.log(numberOfTeams) / Math.log(2));
+	
+				for (int i = 0; i < Math.log(numberOfTeams) / Math.log(2); i++) {
+	
+					for (int j = 0; j < numberOfTeams - 1; j++) {
+						if (j % Math.pow(2, i + 1) == Math.pow(2, i) - 1) {
+							TypeOfMatch matchType = (i == totalRounds - 1) ? TypeOfMatch.GRAND_CHAMPIONSHIP
+									: (i == totalRounds - 2) ? TypeOfMatch.SEMI_FINAL
+											: (i == totalRounds - 3) ? TypeOfMatch.QUARTER_FINAL
+													: TypeOfMatch.NORMAL_GAME;
+							VersusBox add;
+							if (i == 0) {
+								Team t1 = sortedTeams.get(teamSelector * 2);
+								Team t2 = sortedTeams.get((teamSelector * 2) + 1);
+								add = new VersusBox(matchType, t1, t2, teamSelector % 2 == 0);
+							} else {
+								add = new VersusBox(matchType, teamSelector % 2 == 0);
+							}
+	
+							grid.add(add, i, j);
+							matches[heapBuilder] = add;
+							teamSelector++;
+							heapBuilder--;
+						} else {
+							VBox blank = new VBox();
+							blank.setMinHeight(100);
+							blank.setMaxHeight(100);
+							blank.setPrefHeight(100);
+							grid.add(blank, i, j);
+						}
+					}
+				}
+	
+				for (int i = 0; i < matches.length; i++) {
+					int parent = (i - 1) / 2;
+					if (parent < 0)
+						continue;
+	
+					matches[i].setNext(matches[parent]);
+				}
+			}
+	
+			ListView<String> teamList = new ListView<String>();
+			ObservableList<String> items = FXCollections.observableArrayList();
+	
+			for (int i = 0; i < teams.size(); i++)
+				items.add(teams.get(i).toString());
+	
+			teamList.setItems(items);
+	
+			VBox winners = new VBox();
+			first = (teams.size() == 1) ? new Label("First: " + teams.get(0).toString())
+					: (teams.size() == 0) ? new Label("No winner; no competitors.") : new Label("First: TBD");
+			second = (teams.size() > 1) ? new Label("Second: TBD") : new Label("");
+			third = (teams.size() > 2) ? new Label("Third: TBD") : new Label("");
+			winners.getChildren().addAll(first, second, third);
+			ScrollPane scroll = new ScrollPane();
+			scroll.setContent(grid);
+			root.setCenter(scroll);
+			root.setLeft(teamList);
+			root.setRight(winners);
+	
+			Scene scene = new Scene(root, 1400, 800);
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch (FileNotFoundException e) {
+			System.out.println("Invalid file provided.");
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		return list;
+	}
+
+	private static ArrayList<Team> parseInput(String filename) throws FileNotFoundException {
+		Scanner in = new Scanner(new File(filename));
+		ArrayList<Team> teams = new ArrayList<Team>();
+		int n = 0;
+		while (in.hasNext()) {
+			String line = in.nextLine();
+			if (line.equals(""))
+				continue;
+
+			n++;
+			teams.add(new Team(line, n));
+		}
+
+		numberOfTeams = n;
+		return teams;
 	}
 
 	private static ArrayList<Team> sortBySeed(ArrayList<Team> teams) {
-		if(teams.size() <= 4)
+		if (teams.size() <= 2)
 			return teams;
-		
+
 		ArrayList<Team> out = new ArrayList<Team>();
 		int numberOfTeams = teams.size();
 		for (int i = 0; i < numberOfTeams; i++) {
@@ -63,9 +166,9 @@ public class Main extends Application {
 
 	// pre-condition: takes input only from lists already sorted by seed
 	private static ArrayList<Team> sortForFirstRound(ArrayList<Team> teams) {
-		if(teams.size() <= 4)
+		if (teams.size() <= 4)
 			return teams;
-		
+
 		Team[] temp = new Team[teams.size()];
 		// organize the teams into correct set of 2 matches
 		int currSeed = 1;
@@ -119,96 +222,6 @@ public class Main extends Application {
 		}
 
 		return new ArrayList<Team>(Arrays.asList(out));
-	}
-
-	private ArrayList<Team> parseAndSort(String filename) {
-		return sortForFirstRound(sortBySeed(parseInput(filename)));
-	}
-	
-	@Override
-	public void start(Stage primaryStage) {
-		try {
-			primaryStage.setTitle("Tournament Bracket");
-			
-			// parses the first command-line argument, which should be the input filename
-			teams = parseAndSort(""); // getParameters().getRaw().get(0));
-			for (int i = 0; i < teams.size(); i++)
-				System.out.println(teams.get(i).toString());
-
-			BorderPane root = new BorderPane();
-			GridPane grid = new GridPane();
-
-			int numberOfTeams = 32;
-			VersusBox[] matches = new VersusBox[numberOfTeams - 1];
-			int teamSelector = 0;
-			int heapBuilder = numberOfTeams - 2;
-
-			int totalRounds = (int) (Math.log(numberOfTeams) / Math.log(2));
-
-			for (int i = 0; i < Math.log(numberOfTeams) / Math.log(2); i++) {
-
-				for (int j = 0; j < numberOfTeams - 1; j++) {
-					if (j % Math.pow(2, i + 1) == Math.pow(2, i) - 1) {
-						TypeOfMatch matchType = (i == totalRounds - 1) ? TypeOfMatch.GRAND_CHAMPIONSHIP
-								: (i == totalRounds - 2) ? TypeOfMatch.SEMI_FINAL
-										: (i == totalRounds - 3) ? TypeOfMatch.QUARTER_FINAL : TypeOfMatch.NORMAL_GAME;
-						VersusBox add;
-						if (i == 0) {
-							Team t1 = teams.get(teamSelector * 2);
-							Team t2 = teams.get((teamSelector * 2) + 1);
-							add = new VersusBox(matchType, t1, t2, teamSelector % 2 == 0);
-						} else {
-							add = new VersusBox(matchType, teamSelector % 2 == 0);
-						}
-
-						grid.add(add, i, j);
-						matches[heapBuilder] = add;
-						teamSelector++;
-						heapBuilder--;
-					} else {
-						VBox blank = new VBox();
-						blank.setMinHeight(100);
-						blank.setMaxHeight(100);
-						blank.setPrefHeight(100);
-						grid.add(blank, i, j);
-					}
-				}
-			}
-
-			for (int i = 0; i < matches.length; i++) {
-				int parent = (i - 1) / 2;
-				if (parent < 0)
-					continue;
-
-				matches[i].setNext(matches[parent]);
-			}
-
-			ListView<String> teamList = new ListView<String>();
-			ObservableList<String> items = FXCollections.observableArrayList();
-
-			for (int i = 0; i < teams.size(); i++)
-				items.add(teams.get(i).teamName);
-
-			teamList.setItems(items);
-
-			VBox winners = new VBox();
-			first = new Label("First: TBD");
-			second = new Label("Second: TBD");
-			third = new Label("Third: TBD");
-			winners.getChildren().addAll(first, second, third);
-			ScrollPane scroll = new ScrollPane();
-			scroll.setContent(grid);
-			root.setCenter(scroll);
-			root.setLeft(teamList);
-			root.setRight(winners);
-
-			Scene scene = new Scene(root, 1400, 800);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	public static void setFirstPlace(Team team) {
