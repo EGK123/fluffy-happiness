@@ -34,7 +34,7 @@ public class Main extends Application {
 			primaryStage.setTitle("Tournament Bracket");
 	
 			// parses the first command-line argument, which should be the input filename
-			ArrayList<Team> teams = parseInput("teams.txt"); // getParameters().getRaw().get(0));
+			ArrayList<Team> teams = parseInput(getParameters().getRaw().get(0));
 			ArrayList<Team> sortedTeams = sortForFirstRound(sortBySeed(teams));
 			for (int i = 0; i < sortedTeams.size(); i++)
 				System.out.println(sortedTeams.get(i).toString());
