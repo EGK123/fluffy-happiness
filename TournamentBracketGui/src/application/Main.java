@@ -98,6 +98,7 @@ public class Main extends Application {
 			teamList.setItems(items);
 	
 			VBox winners = new VBox();
+			winners.setMinWidth(200);
 			first = (teams.size() == 1) ? new Label("First: " + teams.get(0).toString())
 					: (teams.size() == 0) ? new Label("No winner; no competitors.") : new Label("First: TBD");
 			second = (teams.size() > 1) ? new Label("Second: TBD") : new Label("");
