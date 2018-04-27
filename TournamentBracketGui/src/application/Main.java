@@ -242,10 +242,17 @@ public class Main extends Application {
 		Team[] out = new Team[teams.size()];
 		Team[][] helper = new Team[teams.size() / 4][4];
 		for (int i = 0; i < teams.size(); i += 4) {
-			helper[i / 4][0] = temp[i];
-			helper[i / 4][1] = temp[i + 1];
-			helper[i / 4][2] = temp[i + 2];
-			helper[i / 4][3] = temp[i + 3];
+			if (i == 0) {
+				helper[i / 4][0] = temp[i];
+				helper[i / 4][1] = temp[i + 1];
+				helper[i / 4][2] = temp[i + 2];
+				helper[i / 4][3] = temp[i + 3];
+			} else {
+				helper[i / 4][0] = temp[i + 2];
+				helper[i / 4][1] = temp[i + 3];
+				helper[i / 4][2] = temp[i];
+				helper[i / 4][3] = temp[i + 1];
+			}
 		}
 
 		Team[][] helperTemp = new Team[teams.size() / 4][4];
