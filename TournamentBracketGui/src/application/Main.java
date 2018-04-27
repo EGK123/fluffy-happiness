@@ -45,8 +45,8 @@ public class Main extends Application {
 			// parses the first command-line argument, which should be the input filename
 			ArrayList<Team> teams = parseInput(getParameters().getRaw().get(0));
 			ArrayList<Team> sortedTeams = sortForFirstRound(sortBySeed(teams));
-			for (int i = 0; i < sortedTeams.size(); i++)
-				System.out.println(sortedTeams.get(i).toString());
+//			for (int i = 0; i < sortedTeams.size(); i++)
+//				System.out.println(sortedTeams.get(i).toString());
 
 			BorderPane root = new BorderPane();
 			GridPane grid = new GridPane();
