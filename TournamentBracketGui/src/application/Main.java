@@ -18,6 +18,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
+/**
+ * Main class that places GUI elements and runs the program.
+ * 
+ * @author A-Team 42
+ *
+ */
 public class Main extends Application {
 	private static Label first;
 	private static Label second;
@@ -32,25 +38,25 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			primaryStage.setTitle("Tournament Bracket");
-	
+
 			// parses the first command-line argument, which should be the input filename
 			ArrayList<Team> teams = parseInput(getParameters().getRaw().get(0));
 			ArrayList<Team> sortedTeams = sortForFirstRound(sortBySeed(teams));
 			for (int i = 0; i < sortedTeams.size(); i++)
 				System.out.println(sortedTeams.get(i).toString());
-	
+
 			BorderPane root = new BorderPane();
 			GridPane grid = new GridPane();
-	
+
 			if (teams.size() > 0) {
 				VersusBox[] matches = new VersusBox[numberOfTeams - 1];
 				int teamSelector = 0;
 				int heapBuilder = numberOfTeams - 2;
-	
+
 				int totalRounds = (int) (Math.log(numberOfTeams) / Math.log(2));
-	
+
 				for (int i = 0; i < Math.log(numberOfTeams) / Math.log(2); i++) {
-	
+
 					for (int j = 0; j < numberOfTeams - 1; j++) {
 						if (j % Math.pow(2, i + 1) == Math.pow(2, i) - 1) {
 							TypeOfMatch matchType = (i == totalRounds - 1) ? TypeOfMatch.GRAND_CHAMPIONSHIP
@@ -65,7 +71,7 @@ public class Main extends Application {
 							} else {
 								add = new VersusBox(matchType, teamSelector % 2 == 0);
 							}
-	
+
 							grid.add(add, i, j);
 							matches[heapBuilder] = add;
 							teamSelector++;
@@ -79,24 +85,24 @@ public class Main extends Application {
 						}
 					}
 				}
-	
+
 				for (int i = 0; i < matches.length; i++) {
 					int parent = (i - 1) / 2;
 					if (parent < 0)
 						continue;
-	
+
 					matches[i].setNext(matches[parent]);
 				}
 			}
-	
+
 			ListView<String> teamList = new ListView<String>();
 			ObservableList<String> items = FXCollections.observableArrayList();
-	
+
 			for (int i = 0; i < teams.size(); i++)
 				items.add(teams.get(i).toString());
-	
+
 			teamList.setItems(items);
-	
+
 			VBox winners = new VBox();
 			winners.setMinWidth(200);
 			first = (teams.size() == 1) ? new Label("First: " + teams.get(0).toString())
@@ -109,7 +115,7 @@ public class Main extends Application {
 			root.setCenter(scroll);
 			root.setLeft(teamList);
 			root.setRight(winners);
-	
+
 			Scene scene = new Scene(root, 1400, 800);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
