@@ -62,6 +62,7 @@ public class Main extends Application {
 
 					for (int j = 0; j < numberOfTeams - 1; j++) {
 						if (j % Math.pow(2, i + 1) == Math.pow(2, i) - 1) {
+							// puts a versus box in to the grid
 							TypeOfMatch matchType = (i == totalRounds - 1) ? TypeOfMatch.GRAND_CHAMPIONSHIP
 									: (i == totalRounds - 2) ? TypeOfMatch.SEMI_FINAL
 											: (i == totalRounds - 3) ? TypeOfMatch.QUARTER_FINAL
@@ -80,6 +81,7 @@ public class Main extends Application {
 							teamSelector++;
 							heapBuilder--;
 						} else {
+							// put in a "spacer" box in the grid
 							VBox blank = new VBox();
 							blank.setMinHeight(100);
 							blank.setMaxHeight(100);
@@ -89,6 +91,8 @@ public class Main extends Application {
 					}
 				}
 
+				// sets a "parent" box so the VersusBox knows where to send the winning team to
+				// implemented as a heap
 				for (int i = 0; i < matches.length; i++) {
 					int parent = (i - 1) / 2;
 					if (parent < 0)
@@ -98,14 +102,15 @@ public class Main extends Application {
 				}
 			}
 
+			// creates the ListView to display all the teams
 			ListView<String> teamList = new ListView<String>();
 			ObservableList<String> items = FXCollections.observableArrayList();
-
 			for (int i = 0; i < teams.size(); i++)
 				items.add(teams.get(i).toString());
 
 			teamList.setItems(items);
 
+			// creates an area to display the first, second, and third place teams
 			VBox winners = new VBox();
 			winners.setMinWidth(200);
 			first = (teams.size() == 1) ? new Label("First: " + teams.get(0).toString())
@@ -113,12 +118,13 @@ public class Main extends Application {
 			second = (teams.size() > 1) ? new Label("Second: TBD") : new Label("");
 			third = (teams.size() > 2) ? new Label("Third: TBD") : new Label("");
 			winners.getChildren().addAll(first, second, third);
+
+			// adds everything to the root and shows
 			ScrollPane scroll = new ScrollPane();
 			scroll.setContent(grid);
 			root.setCenter(scroll);
 			root.setLeft(teamList);
 			root.setRight(winners);
-
 			Scene scene = new Scene(root, 1400, 800);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
@@ -195,12 +201,16 @@ public class Main extends Application {
 	/**
 	 * pre-condition: takes input only from lists already sorted by seed
 	 * 
+	 * Sorts teams in to their final ordering for the first round.
+	 * 
 	 * @param teams
 	 *            the ArrayList of teams
 	 * @return an ArrayList of teams sorted in the order they will be placed in the
 	 *         GUI
 	 */
 	private static ArrayList<Team> sortForFirstRound(ArrayList<Team> teams) {
+		// if there are 4 or fewer teams, they are already in the order they will need
+		// to be for the first round
 		if (teams.size() <= 4)
 			return teams;
 
