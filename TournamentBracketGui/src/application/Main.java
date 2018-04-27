@@ -131,9 +131,11 @@ public class Main extends Application {
 	}
 
 	/**
+	 * Reads a list of teams from a file and puts them in an ArrayList.
 	 * 
 	 * @param filename
-	 * @return
+	 *            the name of the file that teams are read from
+	 * @return an ArrayList of teams
 	 * @throws FileNotFoundException
 	 */
 	private static ArrayList<Team> parseInput(String filename) throws FileNotFoundException {
@@ -153,6 +155,16 @@ public class Main extends Application {
 		return teams;
 	}
 
+	/**
+	 * Sorts the teams in pairs of two based on their opponent in the first round.
+	 * The highest-seeded team plays the lowest-seeded team, the second
+	 * highest-seeded team plays the second lowest-seeded team, and so on.
+	 * 
+	 * @param teams
+	 *            the ArrayList of teams
+	 * @return an ArrayList of teams sorted in pairs of two based on who they will
+	 *         play in the first round
+	 */
 	private static ArrayList<Team> sortBySeed(ArrayList<Team> teams) {
 		if (teams.size() <= 2)
 			return teams;
@@ -182,8 +194,11 @@ public class Main extends Application {
 
 	/**
 	 * pre-condition: takes input only from lists already sorted by seed
+	 * 
 	 * @param teams
-	 * @return
+	 *            the ArrayList of teams
+	 * @return an ArrayList of teams sorted in the order they will be placed in the
+	 *         GUI
 	 */
 	private static ArrayList<Team> sortForFirstRound(ArrayList<Team> teams) {
 		if (teams.size() <= 4)
@@ -245,25 +260,38 @@ public class Main extends Application {
 	}
 
 	/**
+	 * Updates the first-place label from "TBA" to the team that got first place in
+	 * the tournament.
 	 * 
 	 * @param team
+	 *            the team that got first place in the tournament
 	 */
 	public static void setFirstPlace(Team team) {
 		first.setText("First: " + team.toString());
 	}
 
 	/**
+	 * Updates the second-place label from "TBA" to the team that got second place
+	 * in the tournament.
 	 * 
 	 * @param team
+	 *            the team that got second place in the tournament
 	 */
 	public static void setSecondPlace(Team team) {
 		second.setText("Second: " + team.toString());
 	}
 
 	/**
+	 * Updates the third-place label. If only one of the semi-finals has been
+	 * completed, the third-place team is the team that lost that semi-final. When
+	 * the next semi-final is completed, the team that gets third is the one that
+	 * had a higher score in the semi-final round.
 	 * 
 	 * @param team
+	 *            the team that lost the semi-final
 	 * @param score
+	 *            the score of the team passed in to the method in the semi-final
+	 *            round
 	 */
 	public static void setThirdPlace(Team team, int score) {
 		if (firstQFinalMatchScore == Integer.MAX_VALUE) {
@@ -275,6 +303,7 @@ public class Main extends Application {
 	}
 
 	/**
+	 * The main method of the program.
 	 * 
 	 * @param args
 	 */
