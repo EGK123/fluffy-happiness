@@ -28,6 +28,9 @@ public class Main extends Application {
 	private static Team firstQFinalTeam;
 	private static int numberOfTeams;
 
+	/**
+	 * 
+	 */
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -121,6 +124,12 @@ public class Main extends Application {
 		}
 	}
 
+	/**
+	 * 
+	 * @param filename
+	 * @return
+	 * @throws FileNotFoundException
+	 */
 	private static ArrayList<Team> parseInput(String filename) throws FileNotFoundException {
 		Scanner in = new Scanner(new File(filename));
 		ArrayList<Team> teams = new ArrayList<Team>();
@@ -165,7 +174,11 @@ public class Main extends Application {
 		return out;
 	}
 
-	// pre-condition: takes input only from lists already sorted by seed
+	/**
+	 * pre-condition: takes input only from lists already sorted by seed
+	 * @param teams
+	 * @return
+	 */
 	private static ArrayList<Team> sortForFirstRound(ArrayList<Team> teams) {
 		if (teams.size() <= 4)
 			return teams;
@@ -225,14 +238,27 @@ public class Main extends Application {
 		return new ArrayList<Team>(Arrays.asList(out));
 	}
 
+	/**
+	 * 
+	 * @param team
+	 */
 	public static void setFirstPlace(Team team) {
 		first.setText("First: " + team.toString());
 	}
 
+	/**
+	 * 
+	 * @param team
+	 */
 	public static void setSecondPlace(Team team) {
 		second.setText("Second: " + team.toString());
 	}
 
+	/**
+	 * 
+	 * @param team
+	 * @param score
+	 */
 	public static void setThirdPlace(Team team, int score) {
 		if (firstQFinalMatchScore == Integer.MAX_VALUE) {
 			firstQFinalMatchScore = score;
@@ -242,6 +268,10 @@ public class Main extends Application {
 		}
 	}
 
+	/**
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}

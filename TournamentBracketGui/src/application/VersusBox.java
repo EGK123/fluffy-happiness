@@ -6,6 +6,11 @@ import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 
+/**
+ * 
+ * @author Zach Kremer, Nathan K
+ *
+ */
 public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEvent> {
     private VersusBox next;
 
@@ -58,6 +63,10 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
         this.getChildren().addAll(team1Box, team2Box, btnBox);
     }
 
+    /**
+     * 
+     * @return
+     */
     public boolean parseScores() {
         try {
             teamScore1 = Integer.parseInt(team1TxtField.getText());
@@ -68,12 +77,24 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
         }
     }
 
+    /**
+     * 
+     * @param match
+     * @param isTop
+     */
     public VersusBox(TypeOfMatch match, boolean isTop) {
         this();
         this.topGame = isTop;
         setMatchType(match);
     }
 
+    /**
+     * 
+     * @param match
+     * @param team1
+     * @param team2
+     * @param isTop
+     */
     public VersusBox(TypeOfMatch match, Team team1, Team team2, boolean isTop) {
         this(match, isTop);
         this.team1 = team1;
@@ -82,6 +103,9 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
         team2Lbl.setText(team2.toString());
     }
 
+    /**
+     * 
+     */
     private void badInputAlert() {
     	Alert abox = new Alert(AlertType.ERROR, "Invalid input, please make sure you entered the scores correctly.");
     	abox.showAndWait();
@@ -99,6 +123,9 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
         }
     }
 
+    /**
+     * 
+     */
     @Override
     public Team getLoser() {
         if (parseScores()) {
@@ -111,6 +138,10 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
         }
     }
 
+    /**
+     * 
+     * @param winner
+     */
     public void sendWinner(Team winner) {
         if (next == null || winner == null)
             return;
@@ -121,44 +152,83 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
             next.setTeam2(winner);
     }
 
+    /**
+     * 
+     * @param box
+     */
     public void setNext(VersusBox box) {
         this.next = box;
     }
 
+    /**
+     * 
+     * @param team
+     */
     public void setTeam1(Team team) {
         team1 = team;
         team1Lbl.setText(team.toString());
     }
 
+    /**
+     * 
+     * @param team
+     */
     public void setTeam2(Team team) {
         team2 = team;
         team2Lbl.setText(team.toString());
     }
 
+    /**
+     * 
+     * @return
+     */
     public int getTeamScore1() {
         return teamScore1;
     }
 
+    /**
+     * 
+     * @param teamScore1
+     */
     public void setTeamScore1(int teamScore1) {
         this.teamScore1 = teamScore1;
     }
 
+    /**
+     * 
+     * @return
+     */
     public int getTeamScore2() {
         return teamScore2;
     }
 
+    /**
+     * 
+     * @param teamScore2
+     */
     public void setTeamScore2(int teamScore2) {
         this.teamScore2 = teamScore2;
     }
 
+    /**
+     * 
+     * @return
+     */
     public TypeOfMatch getMatchType() {
         return matchType;
     }
 
+    /**
+     * 
+     * @param matchType
+     */
     public void setMatchType(TypeOfMatch matchType) {
         this.matchType = matchType;
     }
 
+    /**
+     * 
+     */
     @Override
     public void handle(ActionEvent e) {
     	
