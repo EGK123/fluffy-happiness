@@ -4,7 +4,7 @@ package application;
  * Class that stores relevant information for teams in the tournament, such as
  * the team name and seed.
  * 
- * @author A-Team 42
+ * @author Zach Kremer
  *
  */
 public class Team {

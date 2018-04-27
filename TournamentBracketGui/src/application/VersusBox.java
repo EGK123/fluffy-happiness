@@ -11,7 +11,7 @@ import javafx.scene.control.Alert.AlertType;
  * Also includes methods to get the winner of a match and send them to the next
  * round.
  * 
- * @author A-Team 42
+ * @author Zach Kremer, Nathan K
  *
  */
 public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEvent> {

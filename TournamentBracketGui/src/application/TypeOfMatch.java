@@ -3,7 +3,7 @@ package application;
 /**
  * Describes the round the match is in (e.g. championship, semi-final, etc.)
  * 
- * @author A-Team 42
+ * @author Zach Kremer
  *
  */
 public enum TypeOfMatch {
