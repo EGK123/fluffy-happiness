@@ -206,7 +206,8 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
 	 *            The versus box to send the winning team to
 	 */
 	public void setNext(VersusBox box) {
-		this.next = box;
+		if (this != box)
+			this.next = box;
 	}
 
 	/**
@@ -216,8 +217,36 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
 	 *            the "top" team in the match
 	 */
 	public void setTeam1(Team team) {
-		team1 = team;
-		team1Lbl.setText(team.toString());
+		if (team == team1 || team1 == null) {
+			// normal initial team setter
+		} else if (team != team1 && next != null) {
+			// if one of the teams is removed this round, it must be removed from all
+			// upcoming matches, as it has no longer won this match and is no longer playing
+			// in future matches.
+			if (topGame)
+				next.setTeam1(null);
+			else
+				next.setTeam2(null);
+		}
+
+		// if a team has been removed from this match all of the stats and teams get reset
+		if (team == null) {
+			teamScore1 = 0;
+			teamScore2 = 0;
+			team1 = null;
+			team1Lbl.setText("TBD");
+			team1TxtField.setText("");
+
+			if (next != null) {
+				if (topGame)
+					next.setTeam1(null);
+				else
+					next.setTeam2(null);
+			}
+		} else {
+			team1 = team;
+			team1Lbl.setText(team.toString());
+		}
 	}
 
 	/**
@@ -227,8 +256,37 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
 	 *            the "bottom" team in the match
 	 */
 	public void setTeam2(Team team) {
-		team2 = team;
-		team2Lbl.setText(team.toString());
+
+		if (team == team2 || team2 == null) {
+			// normal initial team setter
+		} else if (team != team2 && next != null) {
+			// if one of the teams is removed this round, it must be removed from all
+			// upcoming matches, as it has no longer won this match and is no longer playing
+			// in future matches.
+			if (topGame)
+				next.setTeam1(null);
+			else
+				next.setTeam2(null);
+		}
+
+		// if a team has been removed from this match all of the stats and teams get reset
+		if (team == null) {
+			teamScore1 = 0;
+			teamScore2 = 0;
+			team2 = null;
+			team2Lbl.setText("TBD");
+			team2TxtField.setText("");
+
+			if (next != null) {
+				if (topGame)
+					next.setTeam1(null);
+				else
+					next.setTeam2(null);
+			}
+		} else {
+			team2 = team;
+			team2Lbl.setText(team.toString());
+		}
 	}
 
 	/**
@@ -296,7 +354,7 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
 	@Override
 	public void handle(ActionEvent e) {
 
-		if (team1 != null && team2!= null && !(getWinner()==null)) {
+		if (team1 != null && team2 != null && !(getWinner() == null)) {
 			switch (matchType) {
 			case GRAND_CHAMPIONSHIP:
 				Main.setFirstPlace(getWinner());
