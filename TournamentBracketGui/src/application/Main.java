@@ -21,17 +21,24 @@ import javafx.scene.layout.VBox;
 /**
  * Main class that places GUI elements and runs the program.
  * 
- * @author A-Team 42
+ * @author A-Team 40
  *
  */
 public class Main extends Application {
+	
+	// Labels for the teams that get first, second, and third place in the tournament
 	private static Label first;
 	private static Label second;
 	private static Label third;
+	
 	// score of the loser of the first quarter-final match to finish;
 	// used to check who gets 3rd place
 	private static int firstQFinalMatchScore = Integer.MAX_VALUE;
+	
+	// the loser of the first semi-final
 	private static Team firstQFinalTeam;
+	
+	// number of teams in the tournament
 	private static int numberOfTeams;
 
 	/**
@@ -45,8 +52,8 @@ public class Main extends Application {
 			// parses the first command-line argument, which should be the input filename
 			ArrayList<Team> teams = parseInput(getParameters().getRaw().get(0));
 			ArrayList<Team> sortedTeams = sortForFirstRound(sortBySeed(teams));
-//			for (int i = 0; i < sortedTeams.size(); i++)
-//				System.out.println(sortedTeams.get(i).toString());
+			// for (int i = 0; i < sortedTeams.size(); i++)
+			// System.out.println(sortedTeams.get(i).toString());
 
 			BorderPane root = new BorderPane();
 			GridPane grid = new GridPane();
@@ -58,9 +65,9 @@ public class Main extends Application {
 
 				int totalRounds = (int) (Math.log(numberOfTeams) / Math.log(2));
 
-				for (int i = 0; i < Math.log(numberOfTeams) / Math.log(2); i++) {
+				for (int i = 0; i < Math.log(numberOfTeams) / Math.log(2); i++) {	// columns in the grid
 
-					for (int j = 0; j < numberOfTeams - 1; j++) {
+					for (int j = 0; j < numberOfTeams - 1; j++) {	// rows in the grid
 						if (j % Math.pow(2, i + 1) == Math.pow(2, i) - 1) {
 							// puts a versus box in to the grid
 							TypeOfMatch matchType = (i == totalRounds - 1) ? TypeOfMatch.GRAND_CHAMPIONSHIP
@@ -69,10 +76,12 @@ public class Main extends Application {
 													: TypeOfMatch.NORMAL_GAME;
 							VersusBox add;
 							if (i == 0) {
+								// first round, includes team match-ups
 								Team t1 = sortedTeams.get(teamSelector * 2);
 								Team t2 = sortedTeams.get((teamSelector * 2) + 1);
 								add = new VersusBox(matchType, t1, t2, teamSelector % 2 == 0);
 							} else {
+								// later rounds, does not include teams because they still have to be determined
 								add = new VersusBox(matchType, teamSelector % 2 == 0);
 							}
 
@@ -201,7 +210,7 @@ public class Main extends Application {
 	/**
 	 * pre-condition: takes input only from lists already sorted by seed
 	 * 
-	 * Sorts teams in to their final ordering for the first round.
+	 * Sorts teams in to their final ordering for the first round of the tournament.
 	 * 
 	 * @param teams
 	 *            the ArrayList of teams
@@ -215,7 +224,10 @@ public class Main extends Application {
 			return teams;
 
 		Team[] temp = new Team[teams.size()];
-		// organize the teams into correct set of 2 matches
+
+		// organizes the teams into correct set of 2 matches (e.g. the winner of the 1
+		// vs 16 needs to play the winner of 8 vs 9 in the second round in a tournament
+		// with 16 teams)
 		int currSeed = 1;
 		while (currSeed <= teams.size() / 4) {
 			int _match1 = -1;
@@ -238,7 +250,10 @@ public class Main extends Application {
 			currSeed++;
 		}
 
-		// organize the teams into their correct display order
+		// places teams in the correct ordering within their group of 2 matches (e.g.
+		// the 2 vs 15 & 7 vs 10 grouping in a 16 team bracket needs to be displayed
+		// as 7 vs 10 then 2 vs 15 rather than 2 vs 15 then 7 vs 10. Look at a NCAA
+		// bracket to see the correct ordering of teams.
 		Team[] out = new Team[teams.size()];
 		Team[][] helper = new Team[teams.size() / 4][4];
 		for (int i = 0; i < teams.size(); i += 4) {
@@ -247,7 +262,7 @@ public class Main extends Application {
 				helper[i / 4][1] = temp[i + 1];
 				helper[i / 4][2] = temp[i + 2];
 				helper[i / 4][3] = temp[i + 3];
-			} else { 
+			} else {
 				helper[i / 4][0] = temp[i + 2];
 				helper[i / 4][1] = temp[i + 3];
 				helper[i / 4][2] = temp[i];
@@ -255,6 +270,9 @@ public class Main extends Application {
 			}
 		}
 
+		// places groups of 2 matches in the correct display order (e.g. 1 vs 16 & 8 vs
+		// 9 need to be the first grouping, 2 vs 15 & 7 vs 10 need to be the last
+		// grouping in a tournament with 16 teams)
 		Team[][] helperTemp = new Team[teams.size() / 4][4];
 		for (int i = 0; i < helper.length; i++) {
 			switch (((i + 1) / 2) % 2) {
@@ -267,6 +285,7 @@ public class Main extends Application {
 			}
 		}
 
+		// transfers teams from helperTemp to out
 		for (int i = 0; i < helperTemp.length; i++) {
 			for (int j = 0; j < helperTemp[i].length; j++) {
 				out[(i * 4) + j] = helperTemp[i][j];
@@ -320,7 +339,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * The main method of the program.
+	 * The main method of the program. Launches start().
 	 * 
 	 * @param args
 	 */

@@ -62,6 +62,11 @@ public class Team {
 		this.seed = seed;
 	}
 
+	/**
+	 * Overrides toString() to print the name and seed of a Team.
+	 * 
+	 * @return the seed and name of a Team
+	 */
 	@Override
 	public String toString() {
 		return "(" + seed + ") " + teamName;

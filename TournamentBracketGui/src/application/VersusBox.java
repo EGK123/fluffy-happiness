@@ -15,33 +15,46 @@ import javafx.scene.control.Alert.AlertType;
  *
  */
 public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEvent> {
+	// the VersusBox the winner of the match will be sent to
 	private VersusBox next;
 
+	// scores for each team
 	private int teamScore1;
 	private int teamScore2;
 
+	// teams competing in a round
 	private Team team1;
 	private Team team2;
 
+	// boxes for each team's Label and TextField
 	private HBox team1Box;
 	private HBox team2Box;
 
+	// box for the submit button
 	private HBox btnBox;
 
+	// label for each team
 	private Label team1Lbl;
 	private Label team2Lbl;
 
+	// text field to input the score of each team
 	private TextField team1TxtField;
 	private TextField team2TxtField;
 
+	// button to submit the scores
 	private Button submitBtn;
 
+	// describes the round (semi-final, final, etc.)
 	private TypeOfMatch matchType;
+
+	// descibes the position of the box in its pairing of two matches. Determines
+	// whether the winning team will be sent to the top or bottom slot of the next
+	// round.
 	boolean topGame;
 
 	/**
 	 * The no-args constructor for VersusBox. Places appropriate GUI elements in the
-	 * VersusBox, but leaves elements blank.
+	 * VersusBox, but leaves elements blank. Used for spacing.
 	 */
 	public VersusBox() {
 		this.setMinHeight(100);
@@ -85,12 +98,38 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
 		}
 	}
 
+	/**
+	 * Constructor for VersusBox when the match type and positioning of the
+	 * VersusBox is known. Used for creating VersusBox past the first round.
+	 * 
+	 * @param match
+	 *            the round "type" (e.g. quarter-final, semi-final, etc.)
+	 * @param isTop
+	 *            the position of the box in its pairing of two matches. Determines
+	 *            whether the winning team will be sent to the top or bottom slot of
+	 *            the next round.
+	 */
 	public VersusBox(TypeOfMatch match, boolean isTop) {
 		this();
 		this.topGame = isTop;
 		setMatchType(match);
 	}
 
+	/**
+	 * Constructor for VersusBox when the teams playing a match are known. Used to
+	 * create matches in the first round (when team match-ups are known).
+	 * 
+	 * @param match
+	 *            the round "type" (e.g. quarter-final, semi-final, etc.)
+	 * @param team1
+	 *            the first team to be competing in a match (shown on top)
+	 * @param team2
+	 *            the second team to be competing in a match (shown on bottom)
+	 * @param isTop
+	 *            the position of the box in its pairing of two matches. Determines
+	 *            whether the winning team will be sent to the top or bottom slot of
+	 *            the next round.
+	 */
 	public VersusBox(TypeOfMatch match, Team team1, Team team2, boolean isTop) {
 		this(match, isTop);
 		this.team1 = team1;
@@ -107,6 +146,13 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
 		abox.showAndWait();
 	}
 
+	/**
+	 * Returns the winner of a match. The winner is the team that scored more
+	 * points.
+	 * 
+	 * @return the winning team. If there is a tie, null is returned. If there was
+	 *         bad input, a badInputAlert is shown.
+	 */
 	@Override
 	public Team getWinner() {
 		if (parseScores()) {
@@ -119,6 +165,12 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
 		}
 	}
 
+	/**
+	 * Returns the loser of a match. The loser is the team that scored fewer points.
+	 * 
+	 * @return the losing team. If there is a tie, null is returned. If there was
+	 *         bad input, a badInputAlert is shown.
+	 */
 	@Override
 	public Team getLoser() {
 		if (parseScores()) {
@@ -149,7 +201,9 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
 
 	/**
 	 * Setter for next.
-	 * @param box The versus box to send the winning team to
+	 * 
+	 * @param box
+	 *            The versus box to send the winning team to
 	 */
 	public void setNext(VersusBox box) {
 		this.next = box;
@@ -157,7 +211,9 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
 
 	/**
 	 * Setter for team1.
-	 * @param team the "top" team in the match
+	 * 
+	 * @param team
+	 *            the "top" team in the match
 	 */
 	public void setTeam1(Team team) {
 		team1 = team;
@@ -166,7 +222,9 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
 
 	/**
 	 * Setter for team2.
-	 * @param team the "bottom" team in the match
+	 * 
+	 * @param team
+	 *            the "bottom" team in the match
 	 */
 	public void setTeam2(Team team) {
 		team2 = team;
@@ -175,6 +233,7 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
 
 	/**
 	 * Getter for teamScore1.
+	 * 
 	 * @return the number of points team1 scored
 	 */
 	public int getTeamScore1() {
@@ -183,7 +242,9 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
 
 	/**
 	 * Setter for teamScore2.
-	 * @param teamScore1 the number of points team1 scored
+	 * 
+	 * @param teamScore1
+	 *            the number of points team1 scored
 	 */
 	public void setTeamScore1(int teamScore1) {
 		this.teamScore1 = teamScore1;
@@ -191,6 +252,7 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
 
 	/**
 	 * Getter for teamScore2.
+	 * 
 	 * @return teamScore 2 the number of points team2 scored
 	 */
 	public int getTeamScore2() {
@@ -199,7 +261,9 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
 
 	/**
 	 * Setter for teamScore2.
-	 * @param teamScore2 the number of points team2 scored
+	 * 
+	 * @param teamScore2
+	 *            the number of points team2 scored
 	 */
 	public void setTeamScore2(int teamScore2) {
 		this.teamScore2 = teamScore2;
@@ -207,6 +271,7 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
 
 	/**
 	 * Getter for matchType
+	 * 
 	 * @return the round "type" (e.g. quarter-final, semi-final, etc.)
 	 */
 	public TypeOfMatch getMatchType() {
@@ -215,12 +280,19 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
 
 	/**
 	 * Setter for matchType
-	 * @param matchType the round "type" (e.g. quarter-final, semi-final, etc.)
+	 * 
+	 * @param matchType
+	 *            the round "type" (e.g. quarter-final, semi-final, etc.)
 	 */
 	public void setMatchType(TypeOfMatch matchType) {
 		this.matchType = matchType;
 	}
 
+	/**
+	 * Handles Button and TextField action events. Sends the winning team of a match
+	 * to the next round, and updates the first/second/third place labels if
+	 * appropriate.
+	 */
 	@Override
 	public void handle(ActionEvent e) {
 

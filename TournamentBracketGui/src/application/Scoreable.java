@@ -2,9 +2,9 @@ package application;
 
 /**
  * Interface for classes that might want to score a game. Includes a method to
- * get a winner of a game and a method to get a loser of a game.
+ * get the winner of a game and a method to get the loser of a game.
  * 
- * @author A-Team 42
+ * @author A-Team 40
  *
  */
 public interface Scoreable {
