@@ -25,19 +25,20 @@ import javafx.scene.layout.VBox;
  *
  */
 public class Main extends Application {
-	
-	// Labels for the teams that get first, second, and third place in the tournament
+
+	// Labels for the teams that get first, second, and third place in the
+	// tournament
 	private static Label first;
 	private static Label second;
 	private static Label third;
-	
+
 	// score of the loser of the first quarter-final match to finish;
 	// used to check who gets 3rd place
 	private static int firstQFinalMatchScore = Integer.MAX_VALUE;
-	
+
 	// the loser of the first semi-final
 	private static Team firstQFinalTeam;
-	
+
 	// number of teams in the tournament
 	private static int numberOfTeams;
 
@@ -65,9 +66,9 @@ public class Main extends Application {
 
 				int totalRounds = (int) (Math.log(numberOfTeams) / Math.log(2));
 
-				for (int i = 0; i < Math.log(numberOfTeams) / Math.log(2); i++) {	// columns in the grid
+				for (int i = 0; i < Math.log(numberOfTeams) / Math.log(2); i++) { // columns in the grid
 
-					for (int j = 0; j < numberOfTeams - 1; j++) {	// rows in the grid
+					for (int j = 0; j < numberOfTeams - 1; j++) { // rows in the grid
 						if (j % Math.pow(2, i + 1) == Math.pow(2, i) - 1) {
 							// puts a versus box in to the grid
 							TypeOfMatch matchType = (i == totalRounds - 1) ? TypeOfMatch.GRAND_CHAMPIONSHIP
@@ -318,10 +319,11 @@ public class Main extends Application {
 	}
 
 	/**
-	 * Updates the third-place label. If only one of the semi-finals has been
-	 * completed, the third-place team is the team that lost that semi-final. When
-	 * the next semi-final is completed, the team that gets third is the one that
-	 * had a higher score in the semi-final round.
+	 * Updates the third-place label when both semi-final rounds have been
+	 * completed. The team that gets third is the highest-scoring losing team of the
+	 * semi-final round. If both losers of the semi-final round got the same score
+	 * in the semi-final round, then the team that finished their semi-final round
+	 * first gets third place.
 	 * 
 	 * @param team
 	 *            the team that lost the semi-final
@@ -330,7 +332,7 @@ public class Main extends Application {
 	 *            round
 	 */
 	public static void setThirdPlace(Team team, int score) {
-		if (firstQFinalMatchScore == Integer.MAX_VALUE) {
+		if (firstQFinalMatchScore == Integer.MAX_VALUE || team == firstQFinalTeam) {
 			firstQFinalMatchScore = score;
 			firstQFinalTeam = team;
 		} else {

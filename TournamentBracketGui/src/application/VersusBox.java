@@ -296,18 +296,20 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
 	@Override
 	public void handle(ActionEvent e) {
 
-		switch (matchType) {
-		case GRAND_CHAMPIONSHIP:
-			Main.setFirstPlace(getWinner());
-			Main.setSecondPlace(getLoser());
-			break;
-		case SEMI_FINAL:
-			Main.setThirdPlace(getLoser(), (teamScore1 > teamScore2) ? teamScore2 : teamScore1);
-			sendWinner(getWinner());
-			break;
-		default:
-			sendWinner(getWinner());
-			break;
+		if (team1 != null && team2!= null && !(getWinner()==null)) {
+			switch (matchType) {
+			case GRAND_CHAMPIONSHIP:
+				Main.setFirstPlace(getWinner());
+				Main.setSecondPlace(getLoser());
+				break;
+			case SEMI_FINAL:
+				Main.setThirdPlace(getLoser(), (teamScore1 > teamScore2) ? teamScore2 : teamScore1);
+				sendWinner(getWinner());
+				break;
+			default:
+				sendWinner(getWinner());
+				break;
+			}
 		}
 	}
 
