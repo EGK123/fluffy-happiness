@@ -247,7 +247,7 @@ public class Main extends Application {
 				helper[i / 4][1] = temp[i + 1];
 				helper[i / 4][2] = temp[i + 2];
 				helper[i / 4][3] = temp[i + 3];
-			} else {
+			} else { 
 				helper[i / 4][0] = temp[i + 2];
 				helper[i / 4][1] = temp[i + 3];
 				helper[i / 4][2] = temp[i];
