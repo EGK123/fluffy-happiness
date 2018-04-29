@@ -32,12 +32,17 @@ public class Main extends Application {
 	private static Label second;
 	private static Label third;
 
-	// score of the loser of the first quarter-final match to finish;
+	// score of the loser of the top quarter-final match
 	// used to check who gets 3rd place
-	private static int firstQFinalMatchScore = Integer.MAX_VALUE;
+	private static int topQFinalMatchScore = Integer.MAX_VALUE;
+	// score of the loser of the top quarter-final match
+	// used to check who gets 3rd place
+	private static int bottomQFinalMatchScore = Integer.MAX_VALUE;
 
-	// the loser of the first semi-final
-	private static Team firstQFinalTeam;
+	// the loser of the top (physically higher) q-final match
+	private static Team topQFinalTeam;
+	// the loser of the bottom (physically lower) q-final match
+	private static Team bottomQFinalTeam;
 
 	// number of teams in the tournament
 	private static int numberOfTeams;
@@ -304,7 +309,10 @@ public class Main extends Application {
 	 *            the team that got first place in the tournament
 	 */
 	public static void setFirstPlace(Team team) {
-		first.setText("First: " + team.toString());
+		if (team == null)
+			first.setText("First: TBD");
+		else
+			first.setText("First: " + team.toString());
 	}
 
 	/**
@@ -315,7 +323,10 @@ public class Main extends Application {
 	 *            the team that got second place in the tournament
 	 */
 	public static void setSecondPlace(Team team) {
-		second.setText("Second: " + team.toString());
+		if (team == null)
+			second.setText("Second: TBD");
+		else
+			second.setText("Second: " + team.toString());
 	}
 
 	/**
@@ -331,12 +342,30 @@ public class Main extends Application {
 	 *            the score of the team passed in to the method in the semi-final
 	 *            round
 	 */
-	public static void setThirdPlace(Team team, int score) {
-		if (firstQFinalMatchScore == Integer.MAX_VALUE || team == firstQFinalTeam) {
-			firstQFinalMatchScore = score;
-			firstQFinalTeam = team;
+	public static void setThirdPlace(Team team, int score, boolean topGame) {
+		System.out.println(team == null);
+		if (team == null) {
+			if (topGame) {
+				topQFinalTeam = null;
+				topQFinalMatchScore = Integer.MAX_VALUE;
+			} else {
+				bottomQFinalTeam = null;
+				bottomQFinalMatchScore = Integer.MAX_VALUE;
+			}
+			third.setText("Third: TBD");
 		} else {
-			third.setText("Third: " + ((score > firstQFinalMatchScore) ? team.toString() : firstQFinalTeam.toString()));
+			if (topGame) {
+				topQFinalTeam = team;
+				topQFinalMatchScore = score;
+			} else {
+				bottomQFinalTeam = team;
+				bottomQFinalMatchScore = score;
+			}
+
+			if (topQFinalTeam != null && bottomQFinalTeam != null) {
+				third.setText("Third: " + ((topQFinalMatchScore > bottomQFinalMatchScore) ? topQFinalTeam.toString()
+						: bottomQFinalTeam.toString()));
+			}
 		}
 	}
 

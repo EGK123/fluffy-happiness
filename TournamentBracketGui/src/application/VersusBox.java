@@ -217,6 +217,20 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
 	 *            the "top" team in the match
 	 */
 	public void setTeam1(Team team) {
+		if (team != team1 && team1 != null) {
+			switch (matchType) {
+			case SEMI_FINAL:
+				Main.setThirdPlace(null, 0, false);
+				break;
+			case GRAND_CHAMPIONSHIP:
+				Main.setSecondPlace(null);
+				Main.setFirstPlace(null);
+				break;
+			default:
+				break;
+			}
+		}
+		
 		if (team == team1 || team1 == null) {
 			// normal initial team setter
 		} else if (team != team1 && next != null) {
@@ -229,7 +243,8 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
 				next.setTeam2(null);
 		}
 
-		// if a team has been removed from this match all of the stats and teams get reset
+		// if a team has been removed from this match all of the stats and teams get
+		// reset
 		if (team == null) {
 			teamScore1 = 0;
 			teamScore2 = 0;
@@ -256,6 +271,19 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
 	 *            the "bottom" team in the match
 	 */
 	public void setTeam2(Team team) {
+		if (team != team2 && team2 != null) {
+			switch (matchType) {
+			case SEMI_FINAL:
+				Main.setThirdPlace(null, 0, false);
+				break;
+			case GRAND_CHAMPIONSHIP:
+				Main.setSecondPlace(null);
+				Main.setFirstPlace(null);
+				break;
+			default:
+				break;
+			}
+		}
 
 		if (team == team2 || team2 == null) {
 			// normal initial team setter
@@ -269,7 +297,8 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
 				next.setTeam2(null);
 		}
 
-		// if a team has been removed from this match all of the stats and teams get reset
+		// if a team has been removed from this match all of the stats and teams get
+		// reset
 		if (team == null) {
 			teamScore1 = 0;
 			teamScore2 = 0;
@@ -361,7 +390,7 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
 				Main.setSecondPlace(getLoser());
 				break;
 			case SEMI_FINAL:
-				Main.setThirdPlace(getLoser(), (teamScore1 > teamScore2) ? teamScore2 : teamScore1);
+				Main.setThirdPlace(getLoser(), (teamScore1 > teamScore2) ? teamScore2 : teamScore1, topGame);
 				sendWinner(getWinner());
 				break;
 			default:
