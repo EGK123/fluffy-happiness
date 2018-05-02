@@ -67,10 +67,13 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
 	// describes the round (semi-final, final, etc.)
 	private TypeOfMatch matchType;
 
-	// descibes the position of the box in its pairing of two matches. Determines
+	// describes the position of the box in its pairing of two matches. Determines
 	// whether the winning team will be sent to the top or bottom slot of the next
 	// round.
 	boolean topGame;
+	
+	// whether the game match has been completed and the winning team has been sent to the next round
+	boolean isSent = false;
 
 	/**
 	 * The no-args constructor for VersusBox. Places appropriate GUI elements in the
@@ -403,7 +406,10 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
 	@Override
 	public void handle(ActionEvent e) {
 
-		if (team1 != null && team2 != null && !(getWinner() == null)) {
+		if (team1 != null && team2 != null && !(getWinner() == null) && isSent==false) {
+			isSent = true;
+			team1TxtField.setDisable(true);
+			team2TxtField.setDisable(true);
 			switch (matchType) {
 			case GRAND_CHAMPIONSHIP:
 				Main.setFirstPlace(getWinner());
