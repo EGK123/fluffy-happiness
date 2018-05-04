@@ -115,6 +115,9 @@ public class VersusBox extends VBox implements Scoreable, EventHandler<ActionEve
 		try {
 			teamScore1 = Integer.parseInt(team1TxtField.getText());
 			teamScore2 = Integer.parseInt(team2TxtField.getText());
+			if (teamScore1 < 0 || teamScore2 < 0) {
+				return false;
+			}
 			return true;
 		} catch (NumberFormatException e) {
 			return false;
